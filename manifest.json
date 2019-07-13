@@ -1,0 +1,34 @@
+{
+  "name": "Code Censor",
+  "description": "Base Level PR Code Reviewer",
+  "version": "1.0",
+  "manifest_version": 2,
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+R",
+        "mac": "MacCtrl+Shift+R"
+      }
+    }
+  },
+  "permissions": [
+    "tabs",
+    "*://*.github.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.github.com/*"
+      ],
+      "js": [
+        "code_censor.js"
+      ],
+      "css": [
+        "code_censor.css"
+      ]
+    }
+  ],
+  "page_action": {
+    "default_icon": "icon.png"
+  }
+}
