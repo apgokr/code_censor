@@ -59,6 +59,7 @@ function highlightRow (data, suggestion, lineNumber) {
   var imgURL = chrome.extension.getURL('assets/icons/' + suggestion.category + '.png')
   suggestionIcon.className = 'cc-icon cc-' + suggestion.category
   suggestionIcon.src = imgURL
+  suggestionIcon.alt = suggestion.category
   emptyCell.appendChild(suggestionIcon)
 
   // Create tooltip to show suggestion.
