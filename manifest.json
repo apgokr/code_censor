@@ -30,5 +30,8 @@
   ],
   "page_action": {
     "default_icon": "icon.png"
-  }
+  },
+  "web_accessible_resources": [
+    "assets/icons/*"
+  ]
 }

@@ -61,3 +61,9 @@
 .cc-tooltip-text a {
   color: azure;
 }
+
+.cc-icon {
+  border-style: none;
+  display: list-item;
+  height: 21px;
+}

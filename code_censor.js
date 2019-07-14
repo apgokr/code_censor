@@ -16,11 +16,6 @@ suggestions.preprocess_field = {
     'If possible go with specific preprocessor like <a href="https://api.drupal.org/api/drupal/core!modules!system!templates!field.html.twig/8.2.x">hook_preprocess_field__field_type</a>'
 }
 
-var categories = {}
-categories.performance = {
-  short: 'P'
-}
-
 // Implement code review
 var reviewFiles = document.querySelectorAll('div.js-details-container.file')
 reviewFiles.forEach(function (reviewFile) {
@@ -58,7 +53,13 @@ function highlightRow (data, suggestion, lineNumber) {
   //     el.style.backgroundColor = suggestionColor;
   // });
   const emptyCell = data.querySelector('td.blob-num.empty-cell')
-  emptyCell.innerText = categories[suggestion.category].short
+
+  // Display icon image
+  const suggestionIcon = document.createElement('img')
+  var imgURL = chrome.extension.getURL('assets/icons/' + suggestion.category + '.png')
+  suggestionIcon.className = 'cc-icon cc-' + suggestion.category
+  suggestionIcon.src = imgURL
+  emptyCell.appendChild(suggestionIcon)
 
   // Create tooltip to show suggestion.
   const tooltipData = document.createElement('div')
