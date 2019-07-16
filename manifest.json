@@ -21,6 +21,8 @@
         "*://*.github.com/*"
       ],
       "js": [
+        "lib/entities.js",
+        "lib/functions.js",
         "code_censor.js"
       ],
       "css": [
