@@ -1,0 +1,11 @@
+{
+  "title": "Test Case 1",
+  "description": "Test Case 1 description",
+  "file_types": [
+    "php"
+  ],
+  "category": [
+    "performance",
+    "security"
+  ]
+}
