@@ -1,4 +1,3 @@
-
 const testFolder = './test_cases/';
 const fs = require('fs');
 
