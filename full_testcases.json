@@ -1,0 +1,69 @@
+{
+  "php": {
+    "0": {
+      "title": "Test Case 1",
+      "description": "Test Case 1 description",
+      "file_types": [
+        "php"
+      ],
+      "category": [
+        "performance",
+        "security"
+      ]
+    },
+    "1": {
+      "title": "Test Case 3",
+      "description": "Test Case 3 description",
+      "file_types": [
+        "php",
+        "module"
+      ],
+      "category": [
+        "performance",
+        "security"
+      ]
+    }
+  },
+  "js": {
+    "0": {
+      "title": "Test Case 2",
+      "description": "Test Case 2 description",
+      "file_types": [
+        "js",
+        "css"
+      ],
+      "category": [
+        "performance",
+        "security"
+      ]
+    }
+  },
+  "css": {
+    "0": {
+      "title": "Test Case 2",
+      "description": "Test Case 2 description",
+      "file_types": [
+        "js",
+        "css"
+      ],
+      "category": [
+        "performance",
+        "security"
+      ]
+    }
+  },
+  "module": {
+    "0": {
+      "title": "Test Case 3",
+      "description": "Test Case 3 description",
+      "file_types": [
+        "php",
+        "module"
+      ],
+      "category": [
+        "performance",
+        "security"
+      ]
+    }
+  }
+}

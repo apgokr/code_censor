@@ -3,24 +3,6 @@ const testFolder = './test_cases/';
 const fs = require('fs');
 
 let test_cases = {};
-let master_test_cases = [];
-
-let getTestCases = function(testFolder) {
-  return new Promise((resolve, reject) => {
-    fs.readdir(testFolder, (err, files) => {
-      if (err) {
-        reject(err);
-      }
-      else {
-        files.forEach(file => {
-          getSingleTestCase(testFolder, file)
-            .then(test_cases => console.log(test_cases))
-            .catch(err => console.log(err));
-        });
-      }
-    });
-  })
-};
 
 let getSingleTestCase = function(testFolder, file) {
   return new Promise((resolve, reject) => {
@@ -42,7 +24,20 @@ let getSingleTestCase = function(testFolder, file) {
   })
 };
 
-getTestCases(testFolder)
-  .then(test_cases => console.log(test_cases));
+files = fs.readdirSync(testFolder);
 
-// File should be generated which should contain all test cases in serialized format.
+let promises = files.map(file => {
+  return getSingleTestCase(testFolder, file)
+    .then(result => {
+      return result;
+    })
+});
+
+Promise.all(promises)
+  .then(response =>
+    fs.writeFile('full_testcases.json', JSON.stringify(response.pop(), null, 2), (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    })
+  );
+
