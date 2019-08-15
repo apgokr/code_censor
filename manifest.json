@@ -18,9 +18,11 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.github.com/*"
+        "*://*.github.com/*/*/pull/*/files"
       ],
       "js": [
+        "lib/entities.js",
+        "lib/functions.js",
         "code_censor.js"
       ],
       "css": [
@@ -32,6 +34,7 @@
     "default_icon": "icon.png"
   },
   "web_accessible_resources": [
-    "assets/icons/*"
+    "assets/icons/*",
+    "lib/core.tests.ser"
   ]
 }
