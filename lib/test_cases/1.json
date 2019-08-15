@@ -1,0 +1,24 @@
+{
+  "title": "Avoid using $_GET, $_POST and $_SERVER Variables directly",
+  "description": "For security always avoid using $_GET, $_POST and $_SERVER variables directly as the raw input may contain harmful instead use the Drupal::service('request_stack')",
+  "links": [
+    {
+      "title": "Using PHP Super-globals",
+      "link": "https://www.drupal.org/node/2150267"
+    },
+    {
+      "title": "How to get post and get params",
+      "link": "https://drupal.stackexchange.com/questions/207044/how-to-get-post-and-get-parameters"
+    }
+  ],
+  "regex": "\\$_GET|\\$_POST|\\$_SERVER",
+  "file_types": [
+    "php",
+    "module",
+    "theme"
+  ],
+  "category": [
+    "security",
+    "best_practices"
+  ]
+}

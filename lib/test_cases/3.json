@@ -1,0 +1,19 @@
+{
+  "title": "Avoid using db_query or query()",
+  "description": "Use dynamic queries instead of static queries",
+  "links": [
+    {
+      "title": "Dynamic Queries",
+      "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+    }
+  ],
+  "regex": "->query|db_query\\(",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
