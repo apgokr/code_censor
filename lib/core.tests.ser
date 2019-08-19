@@ -45,22 +45,23 @@
       ]
     },
     "2": {
-      "title": "Avoid using check_markup for text sanitization",
-      "description": "Instead use t(), Html::escape(), Xss::filter() or Xss::filterAdmin(). While it can also sanitize text, it's almost never correct to use check_markup in a theme or module except in the context of something like a text area with an associated text format.",
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
       "links": [
         {
-          "title": "Drupal 8 Text Sanitization",
-          "link": "https://www.drupal.org/docs/8/security/drupal-8-sanitizing-output#sanitization-for-back-end-use"
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
         }
       ],
-      "regex": "check_markup\\(",
+      "regex": "Drupal::service\\('config\\.storage'\\)",
       "file_types": [
         "php",
         "module",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "best_practices",
+        "functionality"
       ]
     },
     "3": {
@@ -82,6 +83,44 @@
       ]
     },
     "4": {
+      "title": "Avoid using check_markup for text sanitization",
+      "description": "Instead use t(), Html::escape(), Xss::filter() or Xss::filterAdmin(). While it can also sanitize text, it's almost never correct to use check_markup in a theme or module except in the context of something like a text area with an associated text format.",
+      "links": [
+        {
+          "title": "Drupal 8 Text Sanitization",
+          "link": "https://www.drupal.org/docs/8/security/drupal-8-sanitizing-output#sanitization-for-back-end-use"
+        }
+      ],
+      "regex": "check_markup\\(",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "5": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "6": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -101,7 +140,7 @@
         "best_practices"
       ]
     },
-    "5": {
+    "7": {
       "title": "Avoid hard-coding of value like path, domain, api key.",
       "description": "Instead use Drupal config API to provide these values as configurations.",
       "links": [
@@ -120,45 +159,6 @@
       "category": [
         "best_practices",
         "functionality"
-      ]
-    },
-    "6": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "7": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
       ]
     }
   },
@@ -188,6 +188,46 @@
       ]
     },
     "1": {
+      "title": "Suggestion for working with hook_theme()",
+      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
+      "links": [
+        {
+          "title": "Source",
+          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
+        }
+      ],
+      "regex": "function.*_theme\\(.*",
+      "file_types": [
+        "module",
+        "theme",
+        "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "3": {
       "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
       "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
       "links": [
@@ -206,7 +246,7 @@
         "functionality"
       ]
     },
-    "2": {
+    "4": {
       "title": "Avoid using entity presave/insert/update/delete hooks",
       "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
       "links": [
@@ -232,27 +272,7 @@
         "performance"
       ]
     },
-    "3": {
-      "title": "Suggestion for working with hook_theme()",
-      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
-      "links": [
-        {
-          "title": "Source",
-          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
-        }
-      ],
-      "regex": "function.*_theme\\(.*",
-      "file_types": [
-        "module",
-        "theme",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "4": {
+    "5": {
       "title": "Avoid using check_markup for text sanitization",
       "description": "Instead use t(), Html::escape(), Xss::filter() or Xss::filterAdmin(). While it can also sanitize text, it's almost never correct to use check_markup in a theme or module except in the context of something like a text area with an associated text format.",
       "links": [
@@ -271,7 +291,26 @@
         "best_practices"
       ]
     },
-    "5": {
+    "6": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "7": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -291,7 +330,7 @@
         "best_practices"
       ]
     },
-    "6": {
+    "8": {
       "title": "Avoid hard-coding of value like path, domain, api key.",
       "description": "Instead use Drupal config API to provide these values as configurations.",
       "links": [
@@ -310,45 +349,6 @@
       "category": [
         "best_practices",
         "functionality"
-      ]
-    },
-    "7": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "8": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
       ]
     }
   },
@@ -378,6 +378,46 @@
       ]
     },
     "1": {
+      "title": "Suggestion for working with hook_theme()",
+      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
+      "links": [
+        {
+          "title": "Source",
+          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
+        }
+      ],
+      "regex": "function.*_theme\\(.*",
+      "file_types": [
+        "module",
+        "theme",
+        "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "3": {
       "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
       "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
       "links": [
@@ -396,7 +436,7 @@
         "functionality"
       ]
     },
-    "2": {
+    "4": {
       "title": "Avoid using entity presave/insert/update/delete hooks",
       "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
       "links": [
@@ -422,27 +462,7 @@
         "performance"
       ]
     },
-    "3": {
-      "title": "Suggestion for working with hook_theme()",
-      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
-      "links": [
-        {
-          "title": "Source",
-          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
-        }
-      ],
-      "regex": "function.*_theme\\(.*",
-      "file_types": [
-        "module",
-        "theme",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "4": {
+    "5": {
       "title": "Avoid using check_markup for text sanitization",
       "description": "Instead use t(), Html::escape(), Xss::filter() or Xss::filterAdmin(). While it can also sanitize text, it's almost never correct to use check_markup in a theme or module except in the context of something like a text area with an associated text format.",
       "links": [
@@ -461,7 +481,26 @@
         "best_practices"
       ]
     },
-    "5": {
+    "6": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "7": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -481,7 +520,7 @@
         "best_practices"
       ]
     },
-    "6": {
+    "8": {
       "title": "Avoid hard-coding of value like path, domain, api key.",
       "description": "Instead use Drupal config API to provide these values as configurations.",
       "links": [
@@ -501,44 +540,25 @@
         "best_practices",
         "functionality"
       ]
-    },
-    "7": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+    }
+  },
+  "api.php": {
+    "0": {
+      "title": "Avoid creating new custom hooks and instead use event system",
+      "description": "Don't forget the almighty events system of Drupal 8 before proceeding with a new hook.",
       "links": [
         {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+          "title": "Events vs Alter Hooks",
+          "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
         }
       ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "regex": "function.*hook.*\\(.",
       "file_types": [
-        "php",
-        "module",
-        "theme"
+        "api.php"
       ],
       "category": [
         "best_practices",
         "functionality"
-      ]
-    },
-    "8": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
       ]
     }
   },
@@ -580,23 +600,22 @@
       ]
     }
   },
-  "api.php": {
+  "html.twig": {
     "0": {
-      "title": "Avoid creating new custom hooks and instead use event system",
-      "description": "Don't forget the almighty events system of Drupal 8 before proceeding with a new hook.",
+      "title": "Avoid raw filter in twig",
+      "description": "This filter should be avoided whenever possible, particularly if you're outputting data that could be user-entered.",
       "links": [
         {
-          "title": "Events vs Alter Hooks",
-          "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
+          "title": "Using twig filters | raw filter",
+          "link": "https://www.drupal.org/docs/8/theming/twig/filters-modifying-variables-in-twig-templates#raw"
         }
       ],
-      "regex": "function.*hook.*\\(.",
+      "regex": "\\|\\s?raw",
       "file_types": [
-        "api.php"
+        "html.twig"
       ],
       "category": [
-        "best_practices",
-        "functionality"
+        "security"
       ]
     }
   },
@@ -610,7 +629,7 @@
           "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
         }
       ],
-      "regex": ":.*dev*|:.*beta*|:.*rc*|:.*alpha*",
+      "regex": "drupal\\/.*:(.*dev*|:.*beta*|:.*rc*|:.*alpha*)",
       "file_types": [
         "json"
       ],
@@ -621,24 +640,6 @@
   },
   "js": {
     "0": {
-      "title": "Wrap strings in Drupal.t function in Javascript",
-      "description": "The Drupal core javascript library (core/drupal) ships with two functions to support multilingual in Javascript: Drupal.t() and Drupal.formatPlural()",
-      "links": [
-        {
-          "title": "Difference between == and ===",
-          "link": "https://sqndr.github.io/d8-theming-guide/javascript/multilingual.html"
-        }
-      ],
-      "regex": "= '.*'\\s*$|= \".*\"\\s*$",
-      "file_types": [
-        "js"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "1": {
       "title": "Avoid hard-coding of value like path, domain, api key.",
       "description": "Instead use Drupal config API to provide these values as configurations.",
       "links": [
@@ -658,24 +659,23 @@
         "best_practices",
         "functionality"
       ]
-    }
-  },
-  "html.twig": {
-    "0": {
-      "title": "Avoid raw filter in twig",
-      "description": "This filter should be avoided whenever possible, particularly if you're outputting data that could be user-entered.",
+    },
+    "1": {
+      "title": "Wrap strings in Drupal.t function in Javascript",
+      "description": "The Drupal core javascript library (core/drupal) ships with two functions to support multilingual in Javascript: Drupal.t() and Drupal.formatPlural()",
       "links": [
         {
-          "title": "Using twig filters | raw filter",
-          "link": "https://www.drupal.org/docs/8/theming/twig/filters-modifying-variables-in-twig-templates#raw"
+          "title": "Difference between == and ===",
+          "link": "https://sqndr.github.io/d8-theming-guide/javascript/multilingual.html"
         }
       ],
-      "regex": "\\|\\s?raw",
+      "regex": "= '.*'\\s*$|= \".*\"\\s*$",
       "file_types": [
-        "html.twig"
+        "js"
       ],
       "category": [
-        "security"
+        "best_practices",
+        "functionality"
       ]
     }
   }

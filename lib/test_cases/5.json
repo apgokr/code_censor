@@ -7,7 +7,7 @@
       "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
     }
   ],
-  "regex": ":.*dev*|:.*beta*|:.*rc*|:.*alpha*",
+  "regex": "drupal\\/.*:(.*dev*|:.*beta*|:.*rc*|:.*alpha*)",
   "file_types": [
     "json"
   ],
