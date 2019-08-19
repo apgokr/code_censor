@@ -15,11 +15,23 @@
     "tabs",
     "*://*.github.com/*"
   ],
+  "background": {
+    "scripts":["background.js"]
+  },
   "content_scripts": [
     {
       "matches": [
-        "*://*.github.com/*/*/pull/*/files"
+        "*://*.github.com/*"
       ],
+      "js": [
+        "listener.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.github.com/*"
+      ],
+      "run_at": "document_idle",
       "js": [
         "lib/entities.js",
         "lib/functions.js",
