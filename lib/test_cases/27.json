@@ -1,0 +1,19 @@
+{
+  "title": "Use cache tags for node cache",
+  "description": "Avoid node_list cache tag and use specific cache tag instead",
+  "links": [
+    {
+      "title": "Using cache tags for a particular node list\n",
+      "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
+    }
+  ],
+  "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

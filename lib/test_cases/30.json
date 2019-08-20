@@ -1,0 +1,19 @@
+{
+  "title": "Use \\Drupal::routeMatch() for security.",
+  "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
+  "links": [
+    {
+      "title": "Use of \\Drupal::routeMatch()",
+      "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
+    }
+  ],
+  "regex": "(\\\\|)Drupal::request\\(\\)",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "security"
+  ]
+}
