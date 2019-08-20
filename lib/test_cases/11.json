@@ -1,0 +1,20 @@
+{
+  "title": "Avoid using config.storage service to get configuration values.",
+  "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+  "links": [
+    {
+      "title": "Configuration override system",
+      "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+    }
+  ],
+  "regex": "Drupal::service\\('config\\.storage'\\)",
+  "file_types": [
+    "php",
+    "module",
+    "theme"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

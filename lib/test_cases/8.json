@@ -1,0 +1,21 @@
+{
+  "title": "Avoid hard-coding of value like path, domain, api key.",
+  "description": "Instead use Drupal config API to provide these values as configurations.",
+  "links": [
+    {
+      "title": "Working with Config API",
+      "link": "https://www.drupal.org/docs/8/api/configuration-api/simple-configuration-api"
+    }
+  ],
+  "regex": "'https?:\\/\\/|\"https?:\\/\\/",
+  "file_types": [
+    "js",
+    "php",
+    "module",
+    "theme"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

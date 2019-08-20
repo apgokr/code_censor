@@ -1,0 +1,20 @@
+{
+  "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
+  "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
+  "links": [
+    {
+      "title": "Difference between == and ===",
+      "link": "https://stackoverflow.com/questions/80646/how-do-the-php-equality-double-equals-and-identity-triple-equals-comp"
+    }
+  ],
+  "regex": "if.*\\s==\\s",
+  "file_types": [
+    "php",
+    "module",
+    "theme"
+  ],
+  "category": [
+    "functionality",
+    "best_practices"
+  ]
+}

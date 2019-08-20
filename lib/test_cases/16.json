@@ -1,0 +1,26 @@
+{
+  "title": "Avoid using entity presave/insert/update/delete hooks",
+  "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
+  "links": [
+    {
+      "title": "Entity CRUD, editing, and view hooks",
+      "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/group/entity_crud/8.2.x"
+    },
+    {
+      "title": "Event Subscriber Example",
+      "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
+    },
+    {
+      "title": "Drupal 8 Entity Type Events",
+      "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21EntityTypeEvents.php/class/EntityTypeEvents/8.2.x"
+    }
+  ],
+  "regex": "function.*(entity_presave|entity_save|entity_delete|entity_insert)\\(.",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}
