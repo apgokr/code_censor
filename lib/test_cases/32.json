@@ -1,0 +1,19 @@
+{
+  "title": "Use Drupal date formatter.",
+  "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+  "links": [
+    {
+      "title": "Date Formatter",
+      "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+    }
+  ],
+  "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

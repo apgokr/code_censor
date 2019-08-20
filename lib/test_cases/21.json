@@ -1,0 +1,18 @@
+{
+  "title": "Avoid using hook_entity_load, decreases performance.",
+  "description": "Avoid using hook_entity_load, decreases performance.",
+  "links": [
+    {
+      "title": "Drupal Coding for Optimal Performance.",
+      "link": "https://www.oreilly.com/library/view/high-performance-drupal/9781449358013/ch04.html"
+    }
+  ],
+  "regex": "(function |)[a-z0-9\\_]*_entity_load\\(.*\\)",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

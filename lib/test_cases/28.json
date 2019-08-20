@@ -1,0 +1,19 @@
+{
+  "title": "Use cache context for performance..",
+  "description": "Avoid using #cache max-age = 0 and use cache context instead.",
+  "links": [
+    {
+      "title": "Cacheability of render arrays",
+      "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
+    }
+  ],
+  "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
+  "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
+  "links": [
+    {
+      "title": "function hook_theme_suggestions_HOOK_alter.",
+      "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
+    }
+  ],
+  "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

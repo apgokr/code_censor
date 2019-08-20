@@ -1,0 +1,18 @@
+{
+  "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
+  "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
+  "links": [
+    {
+      "title": "EventSubscriber example.",
+      "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
+    }
+  ],
+  "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

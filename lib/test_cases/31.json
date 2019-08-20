@@ -1,0 +1,19 @@
+{
+  "title": "File management using file system service.",
+  "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+  "links": [
+    {
+      "title": "Unmanaged file functions replaced with a service",
+      "link": "https://www.drupal.org/node/3006851"
+    }
+  ],
+  "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

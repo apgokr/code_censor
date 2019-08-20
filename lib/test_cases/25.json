@@ -1,0 +1,17 @@
+{
+  "title": "Use services.yml to override core services.",
+  "description": "Avoid creating custom service provider class to override drupal core services, use services.yml to override instead",
+  "links": [
+    {
+      "title": "Altering existing services, providing dynamic services.",
+      "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/altering-existing-services-providing-dynamic-services"
+    }
+  ],
+  "regex": "class [a-zA-Z]*ServiceProvider extends ServiceProviderBase",
+  "file_types": [
+    "php"
+  ],
+  "category": [
+    "performance"
+  ]
+}
