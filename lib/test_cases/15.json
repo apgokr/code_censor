@@ -1,0 +1,19 @@
+{
+  "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
+  "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
+  "links": [
+    {
+      "title": "Views Plugins",
+      "link": "https://api.drupal.org/api/drupal/core%21modules%21views%21views.api.php/group/views_plugins/8.2.x"
+    }
+  ],
+  "regex": "function.*preprocess_views\\(.|function.*views_query_alter\\(",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

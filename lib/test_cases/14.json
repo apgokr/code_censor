@@ -1,0 +1,18 @@
+{
+  "title": "Avoid creating new custom hooks and instead use event system",
+  "description": "Don't forget the almighty events system of Drupal 8 before proceeding with a new hook.",
+  "links": [
+    {
+      "title": "Events vs Alter Hooks",
+      "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
+    }
+  ],
+  "regex": "function.*hook.*\\(.",
+  "file_types": [
+    "api.php"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

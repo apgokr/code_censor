@@ -1,0 +1,20 @@
+{
+  "title": "Suggestion for working with hook_theme()",
+  "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
+  "links": [
+    {
+      "title": "Source",
+      "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
+    }
+  ],
+  "regex": "function.*_theme\\(.*",
+  "file_types": [
+    "module",
+    "theme",
+    "php"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}
