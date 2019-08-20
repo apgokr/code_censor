@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: dsu_c_cta_button
-label: 'CTA Button'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }
