@@ -1,0 +1,125 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_browser
+    - field.field.paragraph.c_sideimagetext.field_c_image
+    - field.field.paragraph.c_sideimagetext.field_c_sideimagetext_subheading
+    - field.field.paragraph.c_sideimagetext.field_c_sideimagetext_summary
+    - field.field.paragraph.c_sideimagetext.field_c_title
+    - field.field.paragraph.c_sideimagetext.field_classy_paragraph_style
+    - field.field.paragraph.c_sideimagetext.field_cta_button_item
+    - field.field.paragraph.c_sideimagetext.field_image_position
+    - field.field.paragraph.c_sideimagetext.field_text_vertical_alignment
+    - paragraphs.paragraphs_type.c_sideimagetext
+  module:
+    - content_moderation
+    - datetime
+    - entity_browser
+    - field_group
+    - paragraphs
+    - text
+third_party_settings:
+  field_group:
+    group_cta_button:
+      children: {  }
+      parent_name: ''
+      weight: 8
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: 'CTA Button'
+_core:
+  default_config_hash: 1XpAfxi34Pi6Fv5aUUqQYv7xLm7nz9LbaWmVQgcVrq4
+id: paragraph.c_sideimagetext.default
+targetEntityType: paragraph
+bundle: c_sideimagetext
+mode: default
+content:
+  field_c_image:
+    type: entity_browser_entity_reference
+    weight: 5
+    settings:
+      entity_browser: media_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: thumbnail
+      open: true
+    region: content
+    third_party_settings: {  }
+  field_c_sideimagetext_subheading:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_c_sideimagetext_summary:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_c_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_classy_paragraph_style:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_cta_button_item:
+    weight: 10
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: select
+      form_display_mode: default
+      default_paragraph_type: dsu_c_cta_button
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+    region: content
+  field_image_position:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_text_vertical_alignment:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 9
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  scheduled_publication:
+    type: datetime_default
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

@@ -1,0 +1,164 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - test_module_4
+id: node_teaser_news
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: default
+label: 'Import Teaser content'
+source:
+  plugin: json_parser_multiple
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  content_type: NCP_NewsAndFeatures
+  item_selector: /
+  fields:
+    -
+      name: uid
+      label: ID
+      selector: uid
+    -
+      name: title
+      label: Title
+      selector: NCP_NAndF_HeadLineTitle
+    -
+      name: alternative_title
+      label: 'Alternative Title'
+      selector: Title
+    -
+      name: body
+      label: Body
+      selector: NCP_NAndF_HeadLineAbstract
+    -
+      name: link
+      label: Link
+      selector: NCP_NAndF_RelatedLink
+    -
+      name: image
+      label: image
+      selector: NCP_NAndF_HeadLinePicture
+    -
+      name: alternative_image
+      label: 'Alternative Image'
+      selector: NCP_Picture
+
+    -
+      name: seo_keywords
+      label: 'SEO keywords'
+      selector: NSE_SEO_Keywords
+    -
+      name: seo_description
+      label: 'SEO description'
+      selector: NSE_SEO_Description
+    -
+      name: seo_noindex
+      label: 'SEO noindex'
+      selector: NSE_SEO_NoIndex
+    -
+      name: seo_canonical_url
+      label: 'SEO Canonical Url'
+      selector: NSE_CanonicalLink
+    -
+      name: twitter_description
+      label: 'Twitter description'
+      selector: NSE_TwitterDescription
+    -
+      name: twitter_image
+      label: 'Twitter image'
+      selector: NSE_TwitterImage
+    -
+      name: publishing_start_date
+      label: 'Publishing Start Date'
+      selector: PublishingStartDate
+    -
+      name: publishing_expiration_date
+      label: 'Publishing Expiration Date'
+      selector: PublishingExpirationDate
+    -
+      name: language_code
+      label: 'Language Code'
+      selector: langcode
+  ids:
+    uid:
+      type: string
+process:
+  title:
+    -
+      plugin: get
+      source:
+        - title
+        - alternative_title
+    -
+      plugin: callback
+      callable: array_filter
+    -
+      plugin: callback
+      callable: current
+    -
+      plugin: skip_on_empty
+      method: row
+  image_values:
+    -
+      plugin: get
+      source:
+        - image
+        - alternative_image
+    -
+      plugin: callback
+      callable: array_filter
+    -
+      plugin: callback
+      callable: current
+  field_image:
+    plugin: image_from_html
+    source:
+      - '@image_values'
+      - title
+  body/format:
+    plugin: default_value
+    default_value: rich_text
+  body/value:
+    plugin: nestle_inline_images
+    source: body
+  field_teaser_link:
+    plugin: extract_url
+    source: link
+  field_teaser_link/title: title
+  created:
+    plugin: callback
+    source: created
+    callable: strtotime
+  changed:
+    plugin: callback
+    source: modified
+    callable: strtotime
+  published_at:
+    plugin: callback
+    source: published_on
+    callable: strtotime
+  status:
+    plugin: default_value
+    default_value: 1
+  uid:
+    plugin: default_value
+    default_value: 1
+  type:
+    plugin: default_value
+    default_value: teaser
+  path/0/pathauto:
+    plugin: default_value
+    default_value: 0
+  path/0/alias: path_alias
+  field_meta_tags: metatags
+  scheduled_transition_date: transition_dates
+  scheduled_transition_state: transition_states
+  moderation_state: moderation_state
+  langcode: language_code
+destination:
+  plugin: 'entity:node'
+migration_dependencies: null

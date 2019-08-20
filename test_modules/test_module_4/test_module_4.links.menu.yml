@@ -1,0 +1,5 @@
+test_module_4.configurations:
+  title: 'Migrations Configurations'
+  description: 'Configurations for Migrations.'
+  parent: lcp_global_configurations.settings
+  route_name: test_module_4.configurations

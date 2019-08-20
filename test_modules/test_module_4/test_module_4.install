@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Contains test_module_4.install.
+ */
+
+/**
+ * Add terms to Blog Tag vocabulary.
+ */
+function test_module_4_update_8001() {
+  $helper = \Drupal::service('lcp_nestle_content.helper');
+  $terms = [
+    'Archives',
+    'Anniversaries',
+    'Factories',
+    'Rowntree’s',
+    'York',
+    'History',
+    'Nestlé',
+    'Old Factories',
+    'People',
+    'Production',
+    'After Eight',
+    'Brands',
+    'Confectionery',
+    'Films',
+    'Packaging',
+    'Previously Unseen',
+    'Royal',
+    'Sustainability',
+    'Polo',
+    'Health and Wellness',
+    'Black Magic',
+    'Smarties',
+    'Technology',
+    'As Seen On TV',
+    'Family History',
+    'Youth Employment',
+    'Milk',
+    'Nestlé Worldwide',
+    'Living Wage',
+    'Yorkie',
+    'The World Wars',
+    'Tutbury',
+    'Halifax',
+    'Quality Street',
+    'Nesquik',
+    'Nescafé',
+    'Kit Kat',
+    'Animal Bar',
+    'Fruit Pastilles ＆ Gums',
+    'Beverages',
+  ];
+  $vocabulary = 'blog_tag';
+  $helper->createTaxonomyTerms($vocabulary, $terms);
+}
+
+/**
+ * Modify correct office location zone for America.
+ */
+function test_module_4_update_8002() {
+  $properties = [
+    'vid' => 'office_location',
+    'name' => 'America',
+  ];
+  $term = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties($properties);
+  if ($term = reset($term)) {
+    $term->setName('Americas');
+    $term->save();
+  }
+}

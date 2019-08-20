@@ -1,0 +1,7 @@
+name: 'LCP Migrations'
+type: module
+description: 'Contains migration configurations & files for all content migrations on the website.'
+core: 8.x
+dependencies:
+  - migrate_plus:migrate_plus
+  - migrate_tools:migrate_tools

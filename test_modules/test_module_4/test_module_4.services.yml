@@ -1,0 +1,9 @@
+services:
+  test_module_4.migrations_helper:
+    class: Drupal\test_module_4\MigrationsHelper
+    arguments: ['@entity_type.manager', '@cache.default', '@state', '@file_system', '@http_client', '@logger.factory', '@config.factory', '@image.factory', '@focal_point.manager', '@language_manager']
+  test_module_4.event_subscriber:
+    class: Drupal\test_module_4\EventSubscriber\LcpMigrationsSubscriber
+    arguments: ['@entity_type.manager', '@state']
+    tags:
+      - {name: event_subscriber}

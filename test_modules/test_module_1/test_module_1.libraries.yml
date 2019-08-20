@@ -1,0 +1,5 @@
+general:
+  version: 1.x
+  css:
+    theme:
+      css/test_module_1.css: {}

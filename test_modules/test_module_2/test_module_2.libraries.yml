@@ -1,0 +1,10 @@
+test_module_2:
+  version: 1.x
+  js:
+    js/test_module_2.js: {}
+  dependencies:
+      - core/jquery
+      - core/drupal
+      - core/drupal.form
+      - core/jquery.once
+      - blocktabs/blocktabs

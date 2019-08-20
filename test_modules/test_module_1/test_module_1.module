@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains test_module_1.module.
+ */
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function test_module_1_theme_registry_alter(&$theme_registry) {
+  // Overriding paragraph__c_sideimagetext template.
+  if (isset($theme_registry['paragraph__c_sideimagetext'])) {
+    $theme_registry['paragraph__c_sideimagetext']['theme path'] = drupal_get_path('module', 'test_module_1');
+    $theme_registry['paragraph__c_sideimagetext']['path'] = drupal_get_path('module', 'test_module_1') . '/templates';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph.html.twig.
+ */
+function test_module_1_preprocess_paragraph__dsu_c_cta_button(&$variables) {
+  // Load the css file when the rendered element is a CTAButton Component.
+  $variables['#attached']['library'][] = 'test_module_1/general';
+}

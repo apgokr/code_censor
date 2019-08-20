@@ -1,0 +1,13 @@
+name: 'Lightnest components: CTA Button'
+description: 'Adds CTA Button to "Text", "Image", "Text + Image" components. '
+type: module
+core: 8.x
+package: 'DSU Components'
+dependencies:
+  - 'drupal:field'
+  - 'drupal:link'
+  - 'drupal:options'
+  - 'paragraphs:paragraphs'
+  - 'entity_class_formatter:entity_class_formatter'
+libraries:
+  - test_module_1/general

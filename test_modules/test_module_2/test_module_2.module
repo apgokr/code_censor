@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Contains test_module_2.module.
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\search_api\Query\QueryInterface;
+
+/**
+ * Implements template_preprocess_views_view().
+ */
+function test_module_2_preprocess_views_view(&$variables) {
+  if ($view = $variables['view']) {
+    if ($view->storage->id() == 'global_search') {
+      $keywords = \Drupal::request()->get('keyword');
+      if (!empty($keywords)) {
+        $no_result_text = t('Unfortunately we have no matches for @keywords', ['@keywords' => $keywords]);
+      }
+      else {
+        $no_result_text = t('No result. Please make sure to enter a word in the search box.');
+      }
+      $variables['empty']['area']['#text'] = $no_result_text;
+      $results_count = count($view->result);
+      if ($results_count) {
+        $variables['exposed']['sort_bef_combine']['#title'] = '';
+      }
+      else {
+        $variables['exposed']['sort_bef_combine']['#attributes']['class'][] = 'hidden';
+      }
+      if (isset($variables['header']['search_api_spellcheck'])) {
+        $url = $variables['header']['search_api_spellcheck']['1']['#url'];
+        $query = $url->getOption('query');
+        $query['keyword'] = $query['keys'];
+        unset($query['keys']);
+        $url->setOption('query', $query);
+        $variables['header']['search_api_spellcheck']['1']['#url'] = $url;
+      }
+
+      $variables['#attached']['library'][] = 'test_module_2/test_module_2';
+
+      if (!empty($variables['pager']['#tags'])) {
+        $variables['pager']['#tags']['1'] = t('Previous');
+        $variables['pager']['#tags']['3'] = t('Next');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function test_module_2_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == "global_search") {
+    $max_relevance = 0;
+    foreach ($view->result as $value) {
+      $max_relevance = ($value->search_api_relevance > $max_relevance) ? $value->search_api_relevance : $max_relevance;
+    }
+    foreach ($view->result as $value) {
+      $relevance = $value->search_api_relevance;
+      $relevance = round(($relevance / $max_relevance) * 100);
+      $value->search_api_relevance = $relevance;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function test_module_2_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] == "views-exposed-form-global-search-global-search-block-all") {
+    $form['sort_bef_combine']['#title'] = '';
+    $form['keyword']['#weight'] = 1;
+    $form['actions']['#weight'] = 2;
+    $form['sort_bef_combine']['#weight'] = 3;
+    $form['keyword']['#prefix'] = '<div class="search-keyword-wrapper">';
+    $form['actions']['#suffix'] = '</div">';
+    $form['keyword']['#attributes']['autocomplete'] = 'off';
+
+    // Send user to searchresults page.
+    $languageManager = \Drupal::languageManager();
+    $search_page_path = \Drupal::state()->get('nestle_global_configurations.error_page_links');
+    if ($languageManager->isMultilingual()) {
+      $lang_id = $languageManager->getCurrentLanguage()->getId();
+      $lang_prefix = \Drupal::config('language.negotiation')->get('url.prefixes');
+      $langcode = $lang_prefix[$lang_id] ?? $lang_id;
+      $form['#action'] = '/' . $langcode . $search_page_path['search_full_site'];
+    }
+    else {
+      $form['#action'] = $search_page_path['search_full_site'];
+    }
+  }
+}
+
+/**
+ * Implements hook_search_api_query_alter().
+ *
+ * As search_api_fulltext filter changes condition to AND for
+ * more than one filter.
+ */
+function test_module_2_search_api_query_alter(QueryInterface &$query) {
+  // Modifying query to use 'OR' condition instead of 'AND'.
+  if ($query->getSearchId() === 'views_page:search__page_search') {
+    $keys = $query->getKeys();
+    if (!empty($keys) && !empty($keys['#conjunction'])) {
+      $keys['#conjunction'] = 'OR';
+    }
+    $query->keys($keys);
+  }
+}

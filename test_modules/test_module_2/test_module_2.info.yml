@@ -1,0 +1,6 @@
+name: 'NCM Search'
+description: 'Contains Search related configuration.'
+type: module
+core: 8.x
+dependencies:
+  - blocktabs:blocktabs

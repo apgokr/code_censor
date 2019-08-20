@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update hooks for test_module_2.
+ */
+
+use Drupal\search_api\Item\Field;
+
+/**
+ * Implements hook_install().
+ */
+function test_module_2_install() {
+  test_module_2_synonym_auto_config();
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function test_module_2_update_8001() {
+  test_module_2_synonym_auto_config();
+}
+
+/**
+ * Gives auto configurations for synonym settings.
+ */
+function test_module_2_synonym_auto_config() {
+  // Save the country code synonym field to index.
+  $index_storage = \Drupal::entityTypeManager()
+    ->getStorage('search_api_index');
+  $indexes = [];
+
+  // Get the list of indexes which are careers related.
+  $ids = \Drupal::entityQuery('search_api_server')
+    ->condition('backend', 'search_api_solr')
+    ->condition('status', TRUE)
+    ->execute();
+  foreach ($ids as $id) {
+    $data = $index_storage->loadByProperties(['server' => $id]);
+    foreach ($data as $index_key => $index) {
+      if (strpos($index_key, 'careers_') !== FALSE) {
+        $indexes[$id] = $index_key;
+      }
+    }
+  }
+
+  // Iterate through each career index and set this new field.
+  foreach ($indexes as $index) {
+    $index = $index_storage->load($index);
+    $field_country_synonym = new Field($index, 'ncm_country_code_synonym');
+    $field_country_synonym->setType('text');
+    $field_country_synonym->setPropertyPath('ncm_country_code_synonym');
+    $field_country_synonym->setLabel('Country Code Synonyms');
+    $index->addField($field_country_synonym);
+    $index->save();
+  }
+
+  // Create country synonym for United Kingdom.
+  $data = [
+    'type' => 'search_api_synonym',
+    'word' => 'United Kingdom',
+    'synonyms' => 'UK',
+    'status' => 1,
+  ];
+  $search_api_synonym = Drupal::entityManager()
+    ->getStorage('search_api_synonym')
+    ->create($data);
+  $search_api_synonym->save();
+}

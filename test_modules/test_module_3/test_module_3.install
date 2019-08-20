@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Install, update functions for the test_module_3 module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function test_module_3_install() {
+  module_set_weight('test_module_3', 51);
+}
+
+/**
+ * Set weight of the test_module_3 module to 50.
+ */
+function test_module_3_update_8100() {
+  module_set_weight('test_module_3', 51);
+}

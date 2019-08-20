@@ -1,0 +1,5 @@
+lockdown_period.settings:
+  title: 'Lockdown configurations'
+  parent: system.admin_config_content
+  description: 'Provides lockdown configuration forms.'
+  route_name: lockdown_period.settings

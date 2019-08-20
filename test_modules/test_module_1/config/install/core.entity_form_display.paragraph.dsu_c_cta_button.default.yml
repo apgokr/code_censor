@@ -1,0 +1,66 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dsu_c_cta_button.field_color
+    - field.field.paragraph.dsu_c_cta_button.field_css_class
+    - field.field.paragraph.dsu_c_cta_button.field_cta_button_url
+    - field.field.paragraph.dsu_c_cta_button.field_position
+    - paragraphs.paragraphs_type.dsu_c_cta_button
+  module:
+    - link_target
+id: paragraph.dsu_c_cta_button.default
+targetEntityType: paragraph
+bundle: dsu_c_cta_button
+mode: default
+content:
+  field_color:
+    weight: 102
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_css_class:
+    weight: 104
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_cta_button_url:
+    weight: 101
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      link_target: ''
+    third_party_settings: {  }
+    type: link_target_field_widget
+    region: content
+  field_position:
+    weight: 103
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  scheduled_publication:
+    type: datetime_default
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

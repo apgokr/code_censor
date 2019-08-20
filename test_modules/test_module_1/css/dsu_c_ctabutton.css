@@ -1,0 +1,29 @@
+.paragraph--type--dsu-c-cta-button {
+  margin: 1.6em 0;
+}
+
+.paragraph--type--dsu-c-cta-button .field--name-field-cta-button-url a {
+  color: #fff;
+  display: inline-block;
+  padding: .8em 2em;
+}
+
+.dark-text .field--name-field-cta-button-url a:hover {
+  color: #fff;
+}
+
+.position-left.paragraph--type--dsu-c-cta-button {
+  text-align: left;
+}
+
+.position-center.paragraph--type--dsu-c-cta-button {
+  text-align: center;
+}
+
+.position-right.paragraph--type--dsu-c-cta-button {
+  text-align: right;
+}
+
+.cta.default {
+  background-color: #485cc7;
+}

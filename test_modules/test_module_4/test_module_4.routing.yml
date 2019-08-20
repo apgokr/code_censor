@@ -1,0 +1,7 @@
+test_module_4.configurations:
+  path: '/admin/config/nestle/migrations'
+  defaults:
+    _title: 'Migrations Configurations'
+    _form: '\Drupal\test_module_4\Form\MigrationsConfigurations'
+  requirements:
+    _permission: 'administer site configuration'

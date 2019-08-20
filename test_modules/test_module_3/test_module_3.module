@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Contains test_module_3.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_user_login_form_alter().
+ */
+function test_module_3_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  $form['#validate'][] = 'test_module_3_validate';
+}
+
+/**
+ * Implements hook_form_user_pass_alter().
+ */
+function test_module_3_form_user_pass_alter(&$form, FormStateInterface $form_state) {
+  $form['#validate'][] = 'test_module_3_validate';
+}
+
+/**
+ * Custom callback function for User Login & Password reset form validation.
+ */
+function test_module_3_validate(&$form, FormStateInterface $form_state) {
+  $allowed_users = [];
+  $lockdown_settings = \Drupal::config('lockdown_period.settings')->get('lockdown_settings');
+  if ($lockdown_settings['lockdown_status'] == 1) {
+    $form_id = $form_state->getValue('form_id');
+
+    switch ($form_id) {
+      case 'user_login_form':
+        $user_id = $form_state->get('uid');
+        $uri = 'internal:/user/login';
+        break;
+
+      case 'user_pass':
+        $user_id = $form_state->getValue('account')->id();
+        $uri = 'internal:/user/password';
+        break;
+    }
+
+    if ($user_id) {
+      $user = \Drupal::entityManager()->getStorage('user')->load($user_id);
+      if (!empty($lockdown_settings['allowed_users'])) {
+        $allowed_users = array_column($lockdown_settings['allowed_users'], 'target_id');
+      }
+      if (!in_array($user_id, $allowed_users) && !$user->hasRole('core_group')) {
+        $form_state->setErrorByName('name', t('Access denied for maintenance. Please try again later.'));
+        $form_state->setRebuild();
+        $form_state->clearErrors();
+        \Drupal::messenger()->addError(t('Access denied for maintenance. Please try again later.'));
+        $url = Url::fromUri($uri);
+        $form_state->setRedirect($url);
+      }
+    }
+  }
+}

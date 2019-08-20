@@ -1,0 +1,12 @@
+services:
+  test_module_3.response_subscriber:
+    class: Drupal\test_module_3\EventSubscriber\ResponseSubscriber
+    arguments: ['@entity_type.manager', '@database', '@config.factory', '@current_user', '@messenger']
+    tags:
+      - { name: event_subscriber }
+
+  test_module_3.access_check:
+    class: Drupal\test_module_3\Access\CustomAccessCheck
+    arguments: ['@current_user', '@config.factory']
+    tags:
+      - { name: access_check , applies_to: _access_check_test_module_3}

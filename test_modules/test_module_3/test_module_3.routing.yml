@@ -1,0 +1,9 @@
+lockdown_period.settings:
+  path: '/admin/config/content/lockdown-period'
+  defaults:
+    _form: '\Drupal\test_module_3\Form\LockdownConfigurationsForm'
+    _title: 'Lockdown Configurations Form'
+  requirements:
+    _access_check_test_module_3: 'TRUE'
+  options:
+    _admin_route: TRUE
