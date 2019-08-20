@@ -31,7 +31,6 @@
       "matches": [
         "*://*.github.com/*"
       ],
-      "run_at": "document_idle",
       "js": [
         "lib/entities.js",
         "lib/functions.js",
