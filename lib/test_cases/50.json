@@ -1,0 +1,19 @@
+{
+  "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
+  "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
+  "links": [
+    {
+      "title": "Drupal Entity Manager is deprecated",
+      "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
+    }
+  ],
+  "regex": "Drupal::entityManager\\(",
+  "file_types": [
+    "module",
+    "install",
+    "php"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

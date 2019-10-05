@@ -1,0 +1,18 @@
+{
+  "title": "Use specific form alters, instead of generic form_alter",
+  "description": "Use specific form alters, instead of generic form_alter",
+  "links": [
+    {
+      "title": "function hook_form_FORM_ID_alter.",
+      "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Form%21form.api.php/function/hook_form_FORM_ID_alter/8.7.x"
+    }
+  ],
+  "regex": "\\*.*hook_form_alter\\(",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

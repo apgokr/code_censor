@@ -1,0 +1,18 @@
+{
+  "title": "Avoid setting _access to TRUE on a route to open up the route fully.",
+  "description": "Setting _access to TRUE publicly opens this route in all circumstances. Instead rely on permissions like 'View Published content'",
+  "links": [
+    {
+      "title": "Structure of route",
+      "link": "https://www.drupal.org/docs/8/api/routing-system/structure-of-routes"
+    }
+  ],
+  "regex": "_access: 'TRUE'",
+  "file_types": [
+    "routing.yml"
+  ],
+  "category": [
+    "best_practices",
+    "security"
+  ]
+}

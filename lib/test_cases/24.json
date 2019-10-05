@@ -1,0 +1,18 @@
+{
+  "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
+  "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
+  "links": [
+    {
+      "title": "function hook_field_widget_WIDGET_TYPE_form_alter.",
+      "link": "https://api.drupal.org/api/drupal/core%21modules%21field%21field.api.php/function/hook_field_widget_WIDGET_TYPE_form_alter"
+    }
+  ],
+  "regex": "function\\s*[a-z0-9\\_]*_field_widget_form_alter\\(",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

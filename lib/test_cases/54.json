@@ -1,0 +1,19 @@
+{
+  "title": "Remove the UUID from the configuration.",
+  "description": "When using exported configuration it is important to remove the UUID from the configuration.",
+  "links": [
+    {
+      "title": "Exporting configuration",
+      "link": "https://www.drupal.org/docs/8/creating-custom-modules/include-default-configuration-in-your-drupal-8-module#s-exporting-configuration"
+    }
+  ],
+  "regex": "uuid:",
+  "file_types": [
+    "config.yml",
+    ".yml",
+    "settings.yml"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

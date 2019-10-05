@@ -1,86 +1,58 @@
-
-var suggestions = {};
-suggestions.init = {
-    regex : 'function\\s*\\S*_init\\(\\)',
-    category : 'performance',
-    file_types : ['module'],
-    title : 'Avoid using hook_init',
-    description : 'hook_init executes at the beginning of every single page request and hence affects performance'
-};
-suggestions.preprocess_field = {
-    regex : 'function\\s*\\S*_preprocess_field\\(',
-    category : 'performance',
-    file_types : ['module', 'theme'],
-    title : 'Avoid using hook_preprocess_field',
-    description : 'If possible go with specific preprocessor like <a href="https://api.drupal.org/api/drupal/core!modules!system!templates!field.html.twig/8.2.x">hook_preprocess_field__field_type</a>'
-};
-
-var categories = {};
-categories.performance = {
-    short : 'P',
-};
-
-var suggestionColor = '#eae173';
-
 /**
- * @todo Sort suggestions based on file types to be more selective.
+ * @file
+ * Contains functions to start code censor.
  */
-var applicableSuggestions;
 
-// Implement code review
-var reviewFiles = document.querySelectorAll('div.js-details-container.file');
-reviewFiles.forEach(function(reviewFile) {
-    let fileType = reviewFile.getAttribute('data-file-type');
-    let fileContent = reviewFile.querySelectorAll('div.js-file-content table.diff-table tr'); 
-
-    // Start from line 1 and perform suggestion checks.
-    for (let lineNumber = 1; lineNumber < fileContent.length; lineNumber++) {
-        performSuggestionChecks(fileContent[lineNumber], fileType, lineNumber);
-    }
-});
-
-function performSuggestionChecks(data, fileType, lineNumber) {
-    let content = data.querySelector('span.blob-code-inner').innerHTML;
-    
-    // Perform review.
-    for (const identifier in suggestions) {
-        let suggestion = suggestions[identifier];
-        
-        if (suggestions.hasOwnProperty(identifier)) {
-            let pattern = new RegExp(suggestion.regex)
-            if (pattern.test(content)) {
-                console.log('Match found');
-                console.log(content + ' for ' + identifier);
-                highlightRow(data, suggestion, lineNumber);
-            }
-        }
-    }
+// Load all applicable test cases.
+function startCodeCensor() {
+    var coreTestsFile = chrome.runtime.getURL('lib/core.tests.ser');
+    fetch(coreTestsFile)
+        .then((response) => response.text())
+        .then((response) => executeCoreTests(response));
 }
 
-// Highlight reviews
-function highlightRow(data, suggestion, lineNumber) {
-    data.className += " cc-suggest cc-tooltip";
-    // data.querySelectorAll('td').forEach(function(el) {
-    //     el.style.backgroundColor = suggestionColor;
-    // });
-    let emptyCell = data.querySelector('td.blob-num.empty-cell');
-    emptyCell.innerText = categories[suggestion.category].short;
+function executeCoreTests(response) {
+  let coreTests = JSON.parse(response);
 
-    // Create tooltip to show suggestion.
-    let tooltipData = document.createElement('div');
-    tooltipData.className = 'top cc-tooltip-text';
-    tooltipDataTitle = document.createElement('h3');
-    tooltipDataTitle.innerText = suggestion.title;
-    tooltipDataDesc = document.createElement('p');
-    tooltipDataDesc.innerHTML = suggestion.description;
-    tooltipData.appendChild(tooltipDataTitle);    
-    tooltipData.appendChild(tooltipDataDesc);
-    tooltipData.appendChild(document.createElement('i'));
-    data.innerHTML += tooltipData.outerHTML;
+  // Read current Pull Request.
+  const currentPullRequest = readPullRequest();
 
-    // Position the tooltip.
-    data.addEventListener('mouseover', function(event) {
-        let tooltip = data.querySelector('.cc-tooltip-text');
-        tooltip.style.top = lineNumber*20 + ' px';
+  // Parse current Pull Request.
+  parsePullRequest(currentPullRequest, coreTests);
+}
+
+// Execution starts here.
+const url = window.location.toString();
+let filesUrl = new RegExp("\/files");
+if (filesUrl.test(url)) {
+    // Execute the test script now.
+    startCodeCensor();
+}
+
+let debounce;
+// Observe progressively loaded diff content
+Array.from(document.querySelectorAll(`
+  .js-diff-progressive-container,
+  .js-diff-load-container`
+)).forEach(target => {
+  new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      // preform checks before adding code wrap to minimize function calls
+      const tar = mutation.target;
+      if (tar && (
+        tar.classList.contains("js-diff-progressive-container") ||
+        tar.classList.contains("js-diff-load-container") ||
+        tar.classList.contains("blob-wrapper")
+      )
+      ) {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => {
+          startCodeCensor();
+        }, 500);
+      }
     });
-}
+  }).observe(target, {
+    childList: true,
+    subtree: true
+  });
+});

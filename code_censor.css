@@ -11,16 +11,20 @@
   cursor: help;
 }
 
-.cc-tooltip h3 {margin:12px 0;}
+.cc-tooltip h3 {margin:12px 0 0;}
+
+.cc-tooltip p {
+  text-align: justify;
+}
 
 .cc-tooltip .top {
   min-width:200px;
-  max-width:400px;
-  left:50%;
+  max-width:500px;
+  left:40%;
   transform:translate(-30%,-100%);
   padding:10px 20px;
   color:#ffffff;
-  background-color:#0f2940;
+  background-color: #000000de;
   font-weight:normal;
   font-size:14px;
   border-radius:8px;
@@ -58,6 +62,22 @@
   box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
 
+.cc-tooltip-text .cc-category {
+  margin-bottom: 10px;
+  text-align: right;
+  color: #30c452;
+}
+
 .cc-tooltip-text a {
-  color: azure;
+  color: #32c854;
+}
+
+.cc-tooltip-text div.cc-links {
+  color: #32c854;
+}
+
+.cc-icon {
+  border-style: none;
+  display: list-item;
+  height: 21px;
 }

@@ -1,0 +1,18 @@
+{
+  "title": "Use specific preprocess hooks, avoid using hook_preprocess",
+  "description": "Use specific preprocess hooks, avoid using hook_preprocess",
+  "links": [
+    {
+      "title": "function hook_preprocess_HOOK.",
+      "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_preprocess_HOOK/8.7.x."
+    }
+  ],
+  "regex": "(function |)[a-z0-9\\_]*_preprocess\\(.*\\)",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

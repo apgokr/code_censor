@@ -1,0 +1,18 @@
+{
+  "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
+  "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
+  "links": [
+    {
+      "title": "Adding stylesheets (CSS) and JavaScript (JS) to a Drupal 8.",
+      "link": "https://www.drupal.org/docs/8/theming/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme"
+    }
+  ],
+  "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

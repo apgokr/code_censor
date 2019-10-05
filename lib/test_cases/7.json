@@ -1,0 +1,18 @@
+{
+  "title": "Wrap strings in Drupal.t function in Javascript",
+  "description": "The Drupal core javascript library (core/drupal) ships with two functions to support multilingual in Javascript: Drupal.t() and Drupal.formatPlural()",
+  "links": [
+    {
+      "title": "Difference between == and ===",
+      "link": "https://sqndr.github.io/d8-theming-guide/javascript/multilingual.html"
+    }
+  ],
+  "regex": "= '.*'\\s*$|= \".*\"\\s*$",
+  "file_types": [
+    "js"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

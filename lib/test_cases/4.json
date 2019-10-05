@@ -1,0 +1,19 @@
+{
+  "title": "Avoid using check_markup for text sanitization",
+  "description": "Instead use t(), Html::escape(), Xss::filter() or Xss::filterAdmin(). While it can also sanitize text, it's almost never correct to use check_markup in a theme or module except in the context of something like a text area with an associated text format.",
+  "links": [
+    {
+      "title": "Drupal 8 Text Sanitization",
+      "link": "https://www.drupal.org/docs/8/security/drupal-8-sanitizing-output#sanitization-for-back-end-use"
+    }
+  ],
+  "regex": "check_markup\\(",
+  "file_types": [
+    "php",
+    "module",
+    "theme"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

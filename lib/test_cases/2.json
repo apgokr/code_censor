@@ -1,0 +1,17 @@
+{
+  "title": "Avoid raw filter in twig",
+  "description": "This filter should be avoided whenever possible, particularly if you're outputting data that could be user-entered.",
+  "links": [
+    {
+      "title": "Using twig filters | raw filter",
+      "link": "https://www.drupal.org/docs/8/theming/twig/filters-modifying-variables-in-twig-templates#raw"
+    }
+  ],
+  "regex": "\\|\\s?raw",
+  "file_types": [
+    "html.twig"
+  ],
+  "category": [
+    "security"
+  ]
+}

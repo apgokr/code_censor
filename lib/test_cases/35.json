@@ -1,0 +1,17 @@
+{
+  "title": "First item of the path cannot be an argument in a route",
+  "description": "The first item of the path cannot be an argument, and must be a string.",
+  "links": [
+    {
+      "title": "Structure of route",
+      "link": "https://www.drupal.org/docs/8/api/routing-system/structure-of-routes"
+    }
+  ],
+  "regex": "\\s*path:\\s*'{",
+  "file_types": [
+    "routing.yml"
+  ],
+  "category": [
+    "functionality"
+  ]
+}

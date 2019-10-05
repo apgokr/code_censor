@@ -1,0 +1,17 @@
+{
+  "title": "Override global $conf variable.",
+  "description": "If you are overriding configurations using global $conf in settings.php, to reflect that on administration pages use Configuration Override Warn or Config Override Inspector module",
+  "links": [
+    {
+      "title": "Configuration override system",
+      "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+    }
+  ],
+  "regex": "\\$config\\[\\'[a-z\\.]*\\'\\]",
+  "file_types": [
+    "settings.php"
+  ],
+  "category": [
+    "functionality"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Use const keywords to define constants.",
+  "description": "Avoid define(), Use const keyword to define constants.",
+  "links": [
+    {
+      "title": "Use const keyword to define constants instead of define()",
+      "link": "https://www.drupal.org/node/1362360"
+    }
+  ],
+  "regex": "define\\((\\\"|\\')[a-zA-Z0-9\\_]*(\\\"|\\')",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

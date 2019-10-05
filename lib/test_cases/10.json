@@ -1,0 +1,18 @@
+{
+  "title": "Avoid using nid/uid/tid as parameter in routes.",
+  "description": "Instead of passing entity id use directly {entity} with parameter upcasting in Routes. Menu parameter upcasting means converting a menu argument to anything which could be used in the route controllers. It can be an object or an array.",
+  "links": [
+    {
+      "title": "Parameter upcasting in routes",
+      "link": "https://www.drupal.org/docs/8/api/routing-system/parameters-in-routes/parameter-upcasting-in-routes"
+    }
+  ],
+  "regex": "path:.*\\{.*id\\}.*$",
+  "file_types": [
+    "routing.yml"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

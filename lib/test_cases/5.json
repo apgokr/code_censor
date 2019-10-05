@@ -1,0 +1,17 @@
+{
+  "title": "Generally Dev, Alpha, beta and Release candidates not yet stable enough for production use.",
+  "description": "These releases should only be downloaded and used by developers very familiar with Drupal or those wishing to help find bugs in the software.",
+  "links": [
+    {
+      "title": "What are alpha and beta releases, and release candidates?",
+      "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
+    }
+  ],
+  "regex": "drupal\\/.*:(.*dev*|.*beta*|.*rc*|.*alpha*)",
+  "file_types": [
+    "json"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

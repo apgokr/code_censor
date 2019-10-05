@@ -1,0 +1,18 @@
+{
+  "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
+  "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
+  "links": [
+    {
+      "title": "function hook_block_view_BASE_BLOCK_ID_alter.",
+      "link": "https://api.drupal.org/api/drupal/core%21modules%21block%21block.api.php/function/hook_block_view_BASE_BLOCK_ID_alter/8.7.x"
+    }
+  ],
+  "regex": "(function |)[a-z0-9\\_]*_block_view_alter\\(.*\\)",
+  "file_types": [
+    "module",
+    "theme"
+  ],
+  "category": [
+    "performance"
+  ]
+}

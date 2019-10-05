@@ -1,0 +1,17 @@
+{
+  "title": "Some patterns are unsafe and should not be used in twig file.",
+  "description": "Some patterns are unsafe and should not be used because they pass a variable directly to translation.",
+  "links": [
+    {
+      "title": "Twig Unsafe translations",
+      "link": "https://www.drupal.org/node/2357633#s-unsafe-translation"
+    }
+  ],
+  "regex": "{{\\s*[a-zA-Z0-9\\_\\-]*\\|placeholder\\s*}}",
+  "file_types": [
+    "html.twig"
+  ],
+  "category": [
+    "security"
+  ]
+}
