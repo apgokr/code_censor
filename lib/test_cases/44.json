@@ -1,0 +1,17 @@
+{
+  "title": "Use Drupal.url().",
+  "description": "Create internal links/relative links using Drupal.url().",
+  "links": [
+    {
+      "title": "Drupal JS API.",
+      "link": "http://read.theodoreb.net/drupal-jsapi/Drupal.html#.url"
+    }
+  ],
+  "regex": "=(\\ [a-z0-9\\_]* \\+\\ |\\ )(\\'|\\\")[a-z0-9\\-\\/]*(\\'|\\\")",
+  "file_types": [
+    "js"
+  ],
+  "category": [
+    "Coding Standards"
+  ]
+}
