@@ -25,26 +25,6 @@
       ]
     },
     "1": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
       "title": "Suggestion for working with hook_theme()",
       "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
@@ -64,7 +44,7 @@
         "functionality"
       ]
     },
-    "3": {
+    "2": {
       "title": "Avoid directly calling Drupal::service(), instead inject the service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -76,6 +56,26 @@
       "regex": "Drupal::service\\(",
       "file_types": [
         "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "3": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
       ],
       "category": [
         "best_practices",
@@ -119,22 +119,22 @@
       ]
     },
     "6": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
       "links": [
         {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
         }
       ],
-      "regex": "->query|db_query\\(",
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
       "file_types": [
         "module",
         "php",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "performance"
       ]
     },
     "7": {
@@ -176,15 +176,15 @@
       ]
     },
     "9": {
-      "title": "Use Drupal date formatter.",
-      "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
       "links": [
         {
-          "title": "Date Formatter",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
         }
       ],
-      "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+      "regex": "->query|db_query\\(",
       "file_types": [
         "module",
         "php",
@@ -195,25 +195,6 @@
       ]
     },
     "10": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
-      "links": [
-        {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "11": {
       "title": "File management using file system service.",
       "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
       "links": [
@@ -223,6 +204,25 @@
         }
       ],
       "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "11": {
+      "title": "Use Drupal date formatter.",
+      "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+      "links": [
+        {
+          "title": "Date Formatter",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+        }
+      ],
+      "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
       "file_types": [
         "module",
         "php",
@@ -288,23 +288,6 @@
       ]
     },
     "15": {
-      "title": "Avoid directly calling Drupal::database(), instead inject the database service.",
-      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
-      "links": [
-        {
-          "title": "Services and Dependency Injection",
-          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
-        }
-      ],
-      "regex": "Drupal::database\\(",
-      "file_types": [
-        "php"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "16": {
       "title": "Avoid directly calling Drupal::logger(), instead inject the logger.factory service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -321,26 +304,24 @@
         "best_practices"
       ]
     },
-    "17": {
-      "title": "Image accessibilty.",
-      "description": "Use alt and title with image tags.",
+    "16": {
+      "title": "Avoid directly calling Drupal::database(), instead inject the database service.",
+      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
         {
-          "title": "Images Concepts.",
-          "link": "https://www.w3.org/WAI/tutorials/images/"
+          "title": "Services and Dependency Injection",
+          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
         }
       ],
-      "regex": "<img(?![^>]*\\balt=)[^>]*?>",
+      "regex": "Drupal::database\\(",
       "file_types": [
-        "html.twig",
-        "module",
         "php"
       ],
       "category": [
-        "Drupal Best Practices"
+        "best_practices"
       ]
     },
-    "18": {
+    "17": {
       "title": "Avoid directly calling static Entity::load(), instead use the entity_type.manager service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -360,7 +341,7 @@
         "functionality"
       ]
     },
-    "19": {
+    "18": {
       "title": "Avoid directly calling Drupal::entityTypeManager(), instead inject the entity_type.manager service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -377,16 +358,35 @@
         "best_practices"
       ]
     },
-    "20": {
-      "title": "Avoid directly calling t(), instead use StringTranslationTrait trait.",
-      "description": "Using this trait will add t() and formatPlural() methods to the class. These must be used for every translatable string.",
+    "19": {
+      "title": "Image accessibilty.",
+      "description": "Use alt and title with image tags.",
       "links": [
         {
-          "title": "trait StringTranslationTrait",
-          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal!Core!StringTranslation!StringTranslationTrait.php/trait/StringTranslationTrait/8.2.x"
+          "title": "Images Concepts.",
+          "link": "https://www.w3.org/WAI/tutorials/images/"
         }
       ],
-      "regex": "\\st\\(",
+      "regex": "<img(?![^>]*\\balt=)[^>]*?>",
+      "file_types": [
+        "html.twig",
+        "module",
+        "php"
+      ],
+      "category": [
+        "Drupal Best Practices"
+      ]
+    },
+    "20": {
+      "title": "Avoid directly calling Drupal::messenger(), instead inject the messenger service.",
+      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
+      "links": [
+        {
+          "title": "Services and Dependency Injection",
+          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
+        }
+      ],
+      "regex": "Drupal::messenger\\(",
       "file_types": [
         "php"
       ],
@@ -395,6 +395,25 @@
       ]
     },
     "21": {
+      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
+      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
+      "links": [
+        {
+          "title": "Drupal Entity Manager is deprecated",
+          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
+        }
+      ],
+      "regex": "Drupal::entityManager\\(",
+      "file_types": [
+        "module",
+        "install",
+        "php"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "22": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -414,8 +433,8 @@
         "best_practices"
       ]
     },
-    "22": {
-      "title": "Avoid directly calling Drupal::messenger(), instead inject the messenger service.",
+    "23": {
+      "title": "Avoid directly calling Drupal::entityQuery(), instead inject the entity.query service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
         {
@@ -423,27 +442,8 @@
           "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
         }
       ],
-      "regex": "Drupal::messenger\\(",
+      "regex": "Drupal::entityQuery\\(",
       "file_types": [
-        "php"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "23": {
-      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
-      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
-      "links": [
-        {
-          "title": "Drupal Entity Manager is deprecated",
-          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
-        }
-      ],
-      "regex": "Drupal::entityManager\\(",
-      "file_types": [
-        "module",
-        "install",
         "php"
       ],
       "category": [
@@ -451,6 +451,23 @@
       ]
     },
     "24": {
+      "title": "Avoid directly calling t(), instead use StringTranslationTrait trait.",
+      "description": "Using this trait will add t() and formatPlural() methods to the class. These must be used for every translatable string.",
+      "links": [
+        {
+          "title": "trait StringTranslationTrait",
+          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal!Core!StringTranslation!StringTranslationTrait.php/trait/StringTranslationTrait/8.2.x"
+        }
+      ],
+      "regex": "\\st\\(",
+      "file_types": [
+        "php"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "25": {
       "title": "Avoid hard-coding of value like path, domain, api key.",
       "description": "Instead use Drupal config API to provide these values as configurations.",
       "links": [
@@ -498,26 +515,6 @@
       ]
     },
     "1": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
       "title": "Suggestion for working with hook_theme()",
       "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
@@ -531,6 +528,26 @@
         "module",
         "theme",
         "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
       ],
       "category": [
         "best_practices",
@@ -583,24 +600,6 @@
       ]
     },
     "5": {
-      "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
-      "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
-      "links": [
-        {
-          "title": "EventSubscriber example.",
-          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
-        }
-      ],
-      "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "6": {
       "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "links": [
@@ -610,6 +609,24 @@
         }
       ],
       "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "6": {
+      "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
+      "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
+      "links": [
+        {
+          "title": "EventSubscriber example.",
+          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
+        }
+      ],
+      "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
       "file_types": [
         "module",
         "theme"
@@ -655,42 +672,6 @@
       ]
     },
     "9": {
-      "title": "Avoid using hook_entity_load, decreases performance.",
-      "description": "Avoid using hook_entity_load, decreases performance.",
-      "links": [
-        {
-          "title": "Drupal Coding for Optimal Performance.",
-          "link": "https://www.oreilly.com/library/view/high-performance-drupal/9781449358013/ch04.html"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_entity_load\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "10": {
-      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
-      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
-      "links": [
-        {
-          "title": "function hook_theme_suggestions_HOOK_alter.",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "11": {
       "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
       "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
       "links": [
@@ -708,7 +689,7 @@
         "performance"
       ]
     },
-    "12": {
+    "10": {
       "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
       "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
       "links": [
@@ -718,6 +699,42 @@
         }
       ],
       "regex": "function\\s*[a-z0-9\\_]*_field_widget_form_alter\\(",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "11": {
+      "title": "Avoid using hook_entity_load, decreases performance.",
+      "description": "Avoid using hook_entity_load, decreases performance.",
+      "links": [
+        {
+          "title": "Drupal Coding for Optimal Performance.",
+          "link": "https://www.oreilly.com/library/view/high-performance-drupal/9781449358013/ch04.html"
+        }
+      ],
+      "regex": "(function |)[a-z0-9\\_]*_entity_load\\(.*\\)",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "12": {
+      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
+      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
+      "links": [
+        {
+          "title": "function hook_theme_suggestions_HOOK_alter.",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
+        }
+      ],
+      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
       "file_types": [
         "module",
         "theme"
@@ -746,22 +763,22 @@
       ]
     },
     "14": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
       "links": [
         {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
         }
       ],
-      "regex": "->query|db_query\\(",
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
       "file_types": [
         "module",
         "php",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "performance"
       ]
     },
     "15": {
@@ -803,6 +820,44 @@
       ]
     },
     "17": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "18": {
+      "title": "File management using file system service.",
+      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "links": [
+        {
+          "title": "Unmanaged file functions replaced with a service",
+          "link": "https://www.drupal.org/node/3006851"
+        }
+      ],
+      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "19": {
       "title": "Use Drupal date formatter.",
       "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
       "links": [
@@ -821,7 +876,7 @@
         "best_practices"
       ]
     },
-    "18": {
+    "20": {
       "title": "In hook_theme, avoid setting \"override preprocess functions\" to TRUE",
       "description": "This will avoid execution of associated preprocess functions. If planning to go ahead with this be sure necessary variables are set by this theme itself.",
       "links": [
@@ -833,44 +888,6 @@
       "regex": "'override preprocess functions'\\s*=>\\s*(true|TRUE|1)",
       "file_types": [
         "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "19": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
-      "links": [
-        {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "20": {
-      "title": "File management using file system service.",
-      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
-      "links": [
-        {
-          "title": "Unmanaged file functions replaced with a service",
-          "link": "https://www.drupal.org/node/3006851"
-        }
-      ],
-      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
-      "file_types": [
-        "module",
-        "php",
         "theme"
       ],
       "category": [
@@ -897,23 +914,6 @@
       ]
     },
     "22": {
-      "title": "Template preprocess functions.",
-      "description": "Avoid writing preprocess functions in .module file and instead create .theme.inc file, load that using moduleHandler to keep things organized.",
-      "links": [
-        {
-          "title": "Building a Views display style plugin for Drupal 8.",
-          "link": "https://www.drupal.org/docs/8/creating-custom-modules/building-a-views-display-style-plugin-for-drupal-8#s-module-file"
-        }
-      ],
-      "regex": "function template_preprocess_[a-z\\_0-9]*\\(",
-      "file_types": [
-        "module"
-      ],
-      "category": [
-        "Drupal best practices"
-      ]
-    },
-    "23": {
       "title": "Avoid using check_markup for text sanitization",
       "description": "Instead use t(), Html::escape(), Xss::filter() or Xss::filterAdmin(). While it can also sanitize text, it's almost never correct to use check_markup in a theme or module except in the context of something like a text area with an associated text format.",
       "links": [
@@ -930,6 +930,23 @@
       ],
       "category": [
         "best_practices"
+      ]
+    },
+    "23": {
+      "title": "Template preprocess functions.",
+      "description": "Avoid writing preprocess functions in .module file and instead create .theme.inc file, load that using moduleHandler to keep things organized.",
+      "links": [
+        {
+          "title": "Building a Views display style plugin for Drupal 8.",
+          "link": "https://www.drupal.org/docs/8/creating-custom-modules/building-a-views-display-style-plugin-for-drupal-8#s-module-file"
+        }
+      ],
+      "regex": "function template_preprocess_[a-z\\_0-9]*\\(",
+      "file_types": [
+        "module"
+      ],
+      "category": [
+        "Drupal best practices"
       ]
     },
     "24": {
@@ -963,25 +980,6 @@
       ]
     },
     "26": {
-      "title": "Image accessibilty.",
-      "description": "Use alt and title with image tags.",
-      "links": [
-        {
-          "title": "Images Concepts.",
-          "link": "https://www.w3.org/WAI/tutorials/images/"
-        }
-      ],
-      "regex": "<img(?![^>]*\\balt=)[^>]*?>",
-      "file_types": [
-        "html.twig",
-        "module",
-        "php"
-      ],
-      "category": [
-        "Drupal Best Practices"
-      ]
-    },
-    "27": {
       "title": "Avoid directly calling static Entity::load(), instead use the entity_type.manager service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -1001,7 +999,45 @@
         "functionality"
       ]
     },
+    "27": {
+      "title": "Image accessibilty.",
+      "description": "Use alt and title with image tags.",
+      "links": [
+        {
+          "title": "Images Concepts.",
+          "link": "https://www.w3.org/WAI/tutorials/images/"
+        }
+      ],
+      "regex": "<img(?![^>]*\\balt=)[^>]*?>",
+      "file_types": [
+        "html.twig",
+        "module",
+        "php"
+      ],
+      "category": [
+        "Drupal Best Practices"
+      ]
+    },
     "28": {
+      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
+      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
+      "links": [
+        {
+          "title": "Drupal Entity Manager is deprecated",
+          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
+        }
+      ],
+      "regex": "Drupal::entityManager\\(",
+      "file_types": [
+        "module",
+        "install",
+        "php"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "29": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -1018,25 +1054,6 @@
       ],
       "category": [
         "functionality",
-        "best_practices"
-      ]
-    },
-    "29": {
-      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
-      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
-      "links": [
-        {
-          "title": "Drupal Entity Manager is deprecated",
-          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
-        }
-      ],
-      "regex": "Drupal::entityManager\\(",
-      "file_types": [
-        "module",
-        "install",
-        "php"
-      ],
-      "category": [
         "best_practices"
       ]
     },
@@ -1088,26 +1105,6 @@
       ]
     },
     "1": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
       "title": "Suggestion for working with hook_theme()",
       "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
@@ -1121,6 +1118,26 @@
         "module",
         "theme",
         "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
       ],
       "category": [
         "best_practices",
@@ -1173,24 +1190,6 @@
       ]
     },
     "5": {
-      "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
-      "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
-      "links": [
-        {
-          "title": "EventSubscriber example.",
-          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
-        }
-      ],
-      "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "6": {
       "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "links": [
@@ -1200,6 +1199,24 @@
         }
       ],
       "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "6": {
+      "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
+      "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
+      "links": [
+        {
+          "title": "EventSubscriber example.",
+          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
+        }
+      ],
+      "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
       "file_types": [
         "module",
         "theme"
@@ -1245,42 +1262,6 @@
       ]
     },
     "9": {
-      "title": "Avoid using hook_entity_load, decreases performance.",
-      "description": "Avoid using hook_entity_load, decreases performance.",
-      "links": [
-        {
-          "title": "Drupal Coding for Optimal Performance.",
-          "link": "https://www.oreilly.com/library/view/high-performance-drupal/9781449358013/ch04.html"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_entity_load\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "10": {
-      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
-      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
-      "links": [
-        {
-          "title": "function hook_theme_suggestions_HOOK_alter.",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "11": {
       "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
       "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
       "links": [
@@ -1298,7 +1279,7 @@
         "performance"
       ]
     },
-    "12": {
+    "10": {
       "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
       "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
       "links": [
@@ -1308,6 +1289,42 @@
         }
       ],
       "regex": "function\\s*[a-z0-9\\_]*_field_widget_form_alter\\(",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "11": {
+      "title": "Avoid using hook_entity_load, decreases performance.",
+      "description": "Avoid using hook_entity_load, decreases performance.",
+      "links": [
+        {
+          "title": "Drupal Coding for Optimal Performance.",
+          "link": "https://www.oreilly.com/library/view/high-performance-drupal/9781449358013/ch04.html"
+        }
+      ],
+      "regex": "(function |)[a-z0-9\\_]*_entity_load\\(.*\\)",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "12": {
+      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
+      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
+      "links": [
+        {
+          "title": "function hook_theme_suggestions_HOOK_alter.",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
+        }
+      ],
+      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
       "file_types": [
         "module",
         "theme"
@@ -1336,22 +1353,22 @@
       ]
     },
     "14": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
       "links": [
         {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
         }
       ],
-      "regex": "->query|db_query\\(",
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
       "file_types": [
         "module",
         "php",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "performance"
       ]
     },
     "15": {
@@ -1393,6 +1410,44 @@
       ]
     },
     "17": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "18": {
+      "title": "File management using file system service.",
+      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "links": [
+        {
+          "title": "Unmanaged file functions replaced with a service",
+          "link": "https://www.drupal.org/node/3006851"
+        }
+      ],
+      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "19": {
       "title": "Use Drupal date formatter.",
       "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
       "links": [
@@ -1411,7 +1466,7 @@
         "best_practices"
       ]
     },
-    "18": {
+    "20": {
       "title": "In hook_theme, avoid setting \"override preprocess functions\" to TRUE",
       "description": "This will avoid execution of associated preprocess functions. If planning to go ahead with this be sure necessary variables are set by this theme itself.",
       "links": [
@@ -1423,44 +1478,6 @@
       "regex": "'override preprocess functions'\\s*=>\\s*(true|TRUE|1)",
       "file_types": [
         "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "19": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
-      "links": [
-        {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "20": {
-      "title": "File management using file system service.",
-      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
-      "links": [
-        {
-          "title": "Unmanaged file functions replaced with a service",
-          "link": "https://www.drupal.org/node/3006851"
-        }
-      ],
-      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
-      "file_types": [
-        "module",
-        "php",
         "theme"
       ],
       "category": [
@@ -1807,6 +1824,25 @@
       ]
     }
   },
+  "json": {
+    "0": {
+      "title": "Generally Dev, Alpha, beta and Release candidates not yet stable enough for production use.",
+      "description": "These releases should only be downloaded and used by developers very familiar with Drupal or those wishing to help find bugs in the software.",
+      "links": [
+        {
+          "title": "What are alpha and beta releases, and release candidates?",
+          "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
+        }
+      ],
+      "regex": "drupal\\/.*:(.*dev*|.*beta*|.*rc*|.*alpha*)",
+      "file_types": [
+        "json"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    }
+  },
   "js": {
     "0": {
       "title": "Use Drupal.url().",
@@ -1862,25 +1898,6 @@
       "category": [
         "best_practices",
         "functionality"
-      ]
-    }
-  },
-  "json": {
-    "0": {
-      "title": "Generally Dev, Alpha, beta and Release candidates not yet stable enough for production use.",
-      "description": "These releases should only be downloaded and used by developers very familiar with Drupal or those wishing to help find bugs in the software.",
-      "links": [
-        {
-          "title": "What are alpha and beta releases, and release candidates?",
-          "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
-        }
-      ],
-      "regex": "drupal\\/.*:(.*dev*|.*beta*|.*rc*|.*alpha*)",
-      "file_types": [
-        "json"
-      ],
-      "category": [
-        "best_practices"
       ]
     }
   }
