@@ -7,7 +7,7 @@
       "link": "https://www.drupal.org/node/2357633#s-unsafe-translation"
     }
   ],
-  "regex": "{{\\s*[a-z0-9\\_]*\\|t\\s*}}",
+  "regex": "{{\\s*[a-z0-9\\_]*\\|placeholder\\s*}}",
   "file_types": [
     "html.twig"
   ],
