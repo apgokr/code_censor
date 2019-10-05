@@ -1,0 +1,17 @@
+{
+  "title": "Use 'enforced' key to delete dependent configurations",
+  "description": "Avoid deleting module dependent configurations in hook_uninstall, instead use 'enforced' key under dependencies of config yml file.",
+  "links": [
+    {
+      "title": "How to remove mymodule configurations on uninstall",
+      "link": "https://www.drupal.org/forum/support/module-development-and-code-questions/2015-09-09/how-to-remove-mymodule-configurations"
+    }
+  ],
+  "regex": "db_delete\\(\\'config\\'\\)",
+  "file_types": [
+    "install"
+  ],
+  "category": [
+    "functionality"
+  ]
+}
