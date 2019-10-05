@@ -9,7 +9,9 @@
   ],
   "regex": "uuid:",
   "file_types": [
-    "config.yml"
+    "config.yml",
+    ".yml",
+    ".settings.yml"
   ],
   "category": [
     "best_practices"
