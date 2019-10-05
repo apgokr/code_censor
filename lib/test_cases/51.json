@@ -1,0 +1,17 @@
+{
+  "title": "Avoid directly calling t(), instead use StringTranslationTrait trait.",
+  "description": "Using this trait will add t() and formatPlural() methods to the class. These must be used for every translatable string.",
+  "links": [
+    {
+      "title": "trait StringTranslationTrait",
+      "link": "https://api.drupal.org/api/drupal/core!lib!Drupal!Core!StringTranslation!StringTranslationTrait.php/trait/StringTranslationTrait/8.2.x"
+    }
+  ],
+  "regex": "\\st\\(",
+  "file_types": [
+    "php"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
