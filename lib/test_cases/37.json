@@ -1,0 +1,19 @@
+{
+  "title": "Use $account for access check",
+  "description": "Avoid using $user object for access checking and instead use $account.",
+  "links": [
+    {
+      "title": "Advanced route access checking",
+      "link": "https://www.drupal.org/docs/8/api/routing-system/access-checking-on-routes/advanced-route-access-checking"
+    }
+  ],
+  "regex": "(hasPermission\\()|(AccessResult::)",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "functionality"
+  ]
+}
