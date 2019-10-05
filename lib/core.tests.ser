@@ -1,46 +1,6 @@
 {
   "php": {
     "0": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "1": {
-      "title": "Suggestion for working with hook_theme()",
-      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
-      "links": [
-        {
-          "title": "Source",
-          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
-        }
-      ],
-      "regex": "function.*_theme\\(.*",
-      "file_types": [
-        "module",
-        "theme",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
       "title": "Avoid using $_GET, $_POST and $_SERVER Variables directly",
       "description": "For security always avoid using $_GET, $_POST and $_SERVER variables directly as the raw input may contain harmful instead use the Drupal::service('request_stack')",
       "links": [
@@ -64,7 +24,7 @@
         "best_practices"
       ]
     },
-    "3": {
+    "1": {
       "title": "Avoid directly calling Drupal::service(), instead inject the service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -82,81 +42,47 @@
         "functionality"
       ]
     },
-    "4": {
-      "title": "Avoid double quotes for strings without variables.",
-      "description": "Avoid double quotes for strings without variables.",
+    "2": {
+      "title": "Suggestion for working with hook_theme()",
+      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
         {
-          "title": "Drupal coding standards.",
-          "link": "https://www.drupal.org/docs/develop/standards/coding-standards"
+          "title": "Source",
+          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
         }
       ],
-      "regex": "\\\"((?!\\$).)*\\\"",
+      "regex": "function.*_theme\\(.*",
       "file_types": [
         "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "5": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "6": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
-      "links": [
-        {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "7": {
-      "title": "Use services.yml to override core services.",
-      "description": "Avoid creating custom service provider class to override drupal core services, use services.yml to override instead",
-      "links": [
-        {
-          "title": "Altering existing services, providing dynamic services.",
-          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/altering-existing-services-providing-dynamic-services"
-        }
-      ],
-      "regex": "class [a-zA-Z]*ServiceProvider extends ServiceProviderBase",
-      "file_types": [
+        "theme",
         "php"
       ],
       "category": [
-        "performance"
+        "best_practices",
+        "functionality"
       ]
     },
-    "8": {
+    "3": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "4": {
       "title": "Use cache tags for node cache",
       "description": "Avoid node_list cache tag and use specific cache tag instead",
       "links": [
@@ -175,7 +101,43 @@
         "performance"
       ]
     },
-    "9": {
+    "5": {
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
+      "links": [
+        {
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
+        }
+      ],
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "6": {
+      "title": "Use services.yml to override core services.",
+      "description": "Avoid creating custom service provider class to override drupal core services, use services.yml to override instead",
+      "links": [
+        {
+          "title": "Altering existing services, providing dynamic services.",
+          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/altering-existing-services-providing-dynamic-services"
+        }
+      ],
+      "regex": "class [a-zA-Z]*ServiceProvider extends ServiceProviderBase",
+      "file_types": [
+        "php"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "7": {
       "title": "Use const keywords to define constants.",
       "description": "Avoid define(), Use const keyword to define constants.",
       "links": [
@@ -194,7 +156,26 @@
         "performance"
       ]
     },
-    "10": {
+    "8": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "9": {
       "title": "Use \\Drupal::routeMatch() for security.",
       "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
       "links": [
@@ -211,6 +192,25 @@
       ],
       "category": [
         "security"
+      ]
+    },
+    "10": {
+      "title": "File management using file system service.",
+      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "links": [
+        {
+          "title": "Unmanaged file functions replaced with a service",
+          "link": "https://www.drupal.org/node/3006851"
+        }
+      ],
+      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
       ]
     },
     "11": {
@@ -233,22 +233,22 @@
       ]
     },
     "12": {
-      "title": "File management using file system service.",
-      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "title": "Avoid double quotes for strings without variables.",
+      "description": "Avoid double quotes for strings without variables.",
       "links": [
         {
-          "title": "Unmanaged file functions replaced with a service",
-          "link": "https://www.drupal.org/node/3006851"
+          "title": "Drupal coding standards.",
+          "link": "https://www.drupal.org/docs/develop/standards/coding-standards"
         }
       ],
-      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "regex": "\\\"((?!\\$).)*\\\"",
       "file_types": [
         "module",
         "php",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "performance"
       ]
     },
     "13": {
@@ -333,46 +333,6 @@
   },
   "module": {
     "0": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "1": {
-      "title": "Suggestion for working with hook_theme()",
-      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
-      "links": [
-        {
-          "title": "Source",
-          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
-        }
-      ],
-      "regex": "function.*_theme\\(.*",
-      "file_types": [
-        "module",
-        "theme",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
       "title": "Avoid using $_GET, $_POST and $_SERVER Variables directly",
       "description": "For security always avoid using $_GET, $_POST and $_SERVER variables directly as the raw input may contain harmful instead use the Drupal::service('request_stack')",
       "links": [
@@ -394,6 +354,45 @@
       "category": [
         "security",
         "best_practices"
+      ]
+    },
+    "1": {
+      "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
+      "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
+      "links": [
+        {
+          "title": "Views Plugins",
+          "link": "https://api.drupal.org/api/drupal/core%21modules%21views%21views.api.php/group/views_plugins/8.2.x"
+        }
+      ],
+      "regex": "function.*preprocess_views\\(.|function.*views_query_alter\\(",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
+      "title": "Suggestion for working with hook_theme()",
+      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
+      "links": [
+        {
+          "title": "Source",
+          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
+        }
+      ],
+      "regex": "function.*_theme\\(.*",
+      "file_types": [
+        "module",
+        "theme",
+        "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
       ]
     },
     "3": {
@@ -423,22 +422,21 @@
       ]
     },
     "4": {
-      "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
-      "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
+      "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
+      "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "links": [
         {
-          "title": "Views Plugins",
-          "link": "https://api.drupal.org/api/drupal/core%21modules%21views%21views.api.php/group/views_plugins/8.2.x"
+          "title": "Adding stylesheets (CSS) and JavaScript (JS) to a Drupal 8.",
+          "link": "https://www.drupal.org/docs/8/theming/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme"
         }
       ],
-      "regex": "function.*preprocess_views\\(.|function.*views_query_alter\\(",
+      "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
       "file_types": [
         "module",
         "theme"
       ],
       "category": [
-        "best_practices",
-        "functionality"
+        "performance"
       ]
     },
     "5": {
@@ -460,6 +458,26 @@
       ]
     },
     "6": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "7": {
       "title": "Use specific preprocess hooks, avoid using hook_preprocess",
       "description": "Use specific preprocess hooks, avoid using hook_preprocess",
       "links": [
@@ -477,7 +495,7 @@
         "performance"
       ]
     },
-    "7": {
+    "8": {
       "title": "Avoid using hook_entity_load, decreases performance.",
       "description": "Avoid using hook_entity_load, decreases performance.",
       "links": [
@@ -495,62 +513,7 @@
         "performance"
       ]
     },
-    "8": {
-      "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
-      "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
-      "links": [
-        {
-          "title": "Adding stylesheets (CSS) and JavaScript (JS) to a Drupal 8.",
-          "link": "https://www.drupal.org/docs/8/theming/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
     "9": {
-      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
-      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
-      "links": [
-        {
-          "title": "function hook_theme_suggestions_HOOK_alter.",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "10": {
-      "title": "Avoid double quotes for strings without variables.",
-      "description": "Avoid double quotes for strings without variables.",
-      "links": [
-        {
-          "title": "Drupal coding standards.",
-          "link": "https://www.drupal.org/docs/develop/standards/coding-standards"
-        }
-      ],
-      "regex": "\\\"((?!\\$).)*\\\"",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "11": {
       "title": "Use specific form alters, instead of generic form_alter",
       "description": "Use specific form alters, instead of generic form_alter",
       "links": [
@@ -568,7 +531,25 @@
         "performance"
       ]
     },
-    "12": {
+    "10": {
+      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
+      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
+      "links": [
+        {
+          "title": "function hook_theme_suggestions_HOOK_alter.",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
+        }
+      ],
+      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "11": {
       "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
       "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
       "links": [
@@ -586,7 +567,7 @@
         "performance"
       ]
     },
-    "13": {
+    "12": {
       "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
       "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
       "links": [
@@ -604,45 +585,7 @@
         "performance"
       ]
     },
-    "14": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "15": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
-      "links": [
-        {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "16": {
+    "13": {
       "title": "Use cache tags for node cache",
       "description": "Avoid node_list cache tag and use specific cache tag instead",
       "links": [
@@ -661,7 +604,26 @@
         "performance"
       ]
     },
-    "17": {
+    "14": {
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
+      "links": [
+        {
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
+        }
+      ],
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "15": {
       "title": "Use const keywords to define constants.",
       "description": "Avoid define(), Use const keyword to define constants.",
       "links": [
@@ -680,7 +642,26 @@
         "performance"
       ]
     },
-    "18": {
+    "16": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "17": {
       "title": "Use \\Drupal::routeMatch() for security.",
       "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
       "links": [
@@ -697,6 +678,25 @@
       ],
       "category": [
         "security"
+      ]
+    },
+    "18": {
+      "title": "File management using file system service.",
+      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "links": [
+        {
+          "title": "Unmanaged file functions replaced with a service",
+          "link": "https://www.drupal.org/node/3006851"
+        }
+      ],
+      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
       ]
     },
     "19": {
@@ -737,22 +737,22 @@
       ]
     },
     "21": {
-      "title": "File management using file system service.",
-      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "title": "Avoid double quotes for strings without variables.",
+      "description": "Avoid double quotes for strings without variables.",
       "links": [
         {
-          "title": "Unmanaged file functions replaced with a service",
-          "link": "https://www.drupal.org/node/3006851"
+          "title": "Drupal coding standards.",
+          "link": "https://www.drupal.org/docs/develop/standards/coding-standards"
         }
       ],
-      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "regex": "\\\"((?!\\$).)*\\\"",
       "file_types": [
         "module",
         "php",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "performance"
       ]
     },
     "22": {
@@ -775,17 +775,6 @@
       ]
     },
     "23": {
-      "title": "Error_level value configuration.",
-      "description": "Avoid setting error_level to non-zero value in settings.php.",
-      "regex": "\\$conf\\[\\'error_level\\'\\]\\ \\=\\ [1-9]",
-      "file_types": [
-        "module"
-      ],
-      "category": [
-        "Drupal best practices"
-      ]
-    },
-    "24": {
       "title": "Use $account for access check",
       "description": "Avoid using $user object for access checking and instead use $account.",
       "links": [
@@ -804,7 +793,7 @@
         "functionality"
       ]
     },
-    "25": {
+    "24": {
       "title": "Template preprocess functions.",
       "description": "Avoid writing preprocess functions in .module file and instead create .theme.inc file, load that using moduleHandler to keep things organized.",
       "links": [
@@ -821,7 +810,7 @@
         "Drupal best practices"
       ]
     },
-    "26": {
+    "25": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -839,6 +828,17 @@
       "category": [
         "functionality",
         "best_practices"
+      ]
+    },
+    "26": {
+      "title": "Error_level value configuration.",
+      "description": "Avoid setting error_level to non-zero value in settings.php.",
+      "regex": "\\$conf\\[\\'error_level\\'\\]\\ \\=\\ [1-9]",
+      "file_types": [
+        "module"
+      ],
+      "category": [
+        "Drupal best practices"
       ]
     },
     "27": {
@@ -865,46 +865,6 @@
   },
   "theme": {
     "0": {
-      "title": "Avoid using config.storage service to get configuration values.",
-      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
-      "links": [
-        {
-          "title": "Configuration override system",
-          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
-        }
-      ],
-      "regex": "Drupal::service\\('config\\.storage'\\)",
-      "file_types": [
-        "php",
-        "module",
-        "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "1": {
-      "title": "Suggestion for working with hook_theme()",
-      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
-      "links": [
-        {
-          "title": "Source",
-          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
-        }
-      ],
-      "regex": "function.*_theme\\(.*",
-      "file_types": [
-        "module",
-        "theme",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
       "title": "Avoid using $_GET, $_POST and $_SERVER Variables directly",
       "description": "For security always avoid using $_GET, $_POST and $_SERVER variables directly as the raw input may contain harmful instead use the Drupal::service('request_stack')",
       "links": [
@@ -926,6 +886,45 @@
       "category": [
         "security",
         "best_practices"
+      ]
+    },
+    "1": {
+      "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
+      "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
+      "links": [
+        {
+          "title": "Views Plugins",
+          "link": "https://api.drupal.org/api/drupal/core%21modules%21views%21views.api.php/group/views_plugins/8.2.x"
+        }
+      ],
+      "regex": "function.*preprocess_views\\(.|function.*views_query_alter\\(",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
+      "title": "Suggestion for working with hook_theme()",
+      "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
+      "links": [
+        {
+          "title": "Source",
+          "link": "https://www.drupal.org/docs/8/creating-custom-modules/creating-custom-blocks/create-a-custom-block#note-using-twig-templates-with-custom-blocks"
+        }
+      ],
+      "regex": "function.*_theme\\(.*",
+      "file_types": [
+        "module",
+        "theme",
+        "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
       ]
     },
     "3": {
@@ -955,22 +954,21 @@
       ]
     },
     "4": {
-      "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
-      "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
+      "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
+      "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "links": [
         {
-          "title": "Views Plugins",
-          "link": "https://api.drupal.org/api/drupal/core%21modules%21views%21views.api.php/group/views_plugins/8.2.x"
+          "title": "Adding stylesheets (CSS) and JavaScript (JS) to a Drupal 8.",
+          "link": "https://www.drupal.org/docs/8/theming/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme"
         }
       ],
-      "regex": "function.*preprocess_views\\(.|function.*views_query_alter\\(",
+      "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
       "file_types": [
         "module",
         "theme"
       ],
       "category": [
-        "best_practices",
-        "functionality"
+        "performance"
       ]
     },
     "5": {
@@ -992,6 +990,26 @@
       ]
     },
     "6": {
+      "title": "Avoid using config.storage service to get configuration values.",
+      "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
+      "links": [
+        {
+          "title": "Configuration override system",
+          "link": "https://www.drupal.org/docs/8/api/configuration-api/configuration-override-system"
+        }
+      ],
+      "regex": "Drupal::service\\('config\\.storage'\\)",
+      "file_types": [
+        "php",
+        "module",
+        "theme"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "7": {
       "title": "Use specific preprocess hooks, avoid using hook_preprocess",
       "description": "Use specific preprocess hooks, avoid using hook_preprocess",
       "links": [
@@ -1009,7 +1027,7 @@
         "performance"
       ]
     },
-    "7": {
+    "8": {
       "title": "Avoid using hook_entity_load, decreases performance.",
       "description": "Avoid using hook_entity_load, decreases performance.",
       "links": [
@@ -1027,62 +1045,7 @@
         "performance"
       ]
     },
-    "8": {
-      "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
-      "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
-      "links": [
-        {
-          "title": "Adding stylesheets (CSS) and JavaScript (JS) to a Drupal 8.",
-          "link": "https://www.drupal.org/docs/8/theming/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_library_info_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
     "9": {
-      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
-      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
-      "links": [
-        {
-          "title": "function hook_theme_suggestions_HOOK_alter.",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "10": {
-      "title": "Avoid double quotes for strings without variables.",
-      "description": "Avoid double quotes for strings without variables.",
-      "links": [
-        {
-          "title": "Drupal coding standards.",
-          "link": "https://www.drupal.org/docs/develop/standards/coding-standards"
-        }
-      ],
-      "regex": "\\\"((?!\\$).)*\\\"",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "11": {
       "title": "Use specific form alters, instead of generic form_alter",
       "description": "Use specific form alters, instead of generic form_alter",
       "links": [
@@ -1100,7 +1063,25 @@
         "performance"
       ]
     },
-    "12": {
+    "10": {
+      "title": "Use hook_theme_suggestions_HOOK_alter for better performance.",
+      "description": "Use hook_theme_suggestions_HOOK_alter instead of hook_theme_suggestions_alter.",
+      "links": [
+        {
+          "title": "function hook_theme_suggestions_HOOK_alter.",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme_suggestions_HOOK_alter/8.7.x"
+        }
+      ],
+      "regex": "(function |)[a-z0-9\\_]*_theme_suggestions_alter\\(.*\\)",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "11": {
       "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
       "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
       "links": [
@@ -1118,7 +1099,7 @@
         "performance"
       ]
     },
-    "13": {
+    "12": {
       "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
       "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
       "links": [
@@ -1136,45 +1117,7 @@
         "performance"
       ]
     },
-    "14": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "15": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
-      "links": [
-        {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "16": {
+    "13": {
       "title": "Use cache tags for node cache",
       "description": "Avoid node_list cache tag and use specific cache tag instead",
       "links": [
@@ -1193,7 +1136,26 @@
         "performance"
       ]
     },
-    "17": {
+    "14": {
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
+      "links": [
+        {
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
+        }
+      ],
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "15": {
       "title": "Use const keywords to define constants.",
       "description": "Avoid define(), Use const keyword to define constants.",
       "links": [
@@ -1212,7 +1174,26 @@
         "performance"
       ]
     },
-    "18": {
+    "16": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "17": {
       "title": "Use \\Drupal::routeMatch() for security.",
       "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
       "links": [
@@ -1229,6 +1210,25 @@
       ],
       "category": [
         "security"
+      ]
+    },
+    "18": {
+      "title": "File management using file system service.",
+      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "links": [
+        {
+          "title": "Unmanaged file functions replaced with a service",
+          "link": "https://www.drupal.org/node/3006851"
+        }
+      ],
+      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
       ]
     },
     "19": {
@@ -1269,22 +1269,22 @@
       ]
     },
     "21": {
-      "title": "File management using file system service.",
-      "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
+      "title": "Avoid double quotes for strings without variables.",
+      "description": "Avoid double quotes for strings without variables.",
       "links": [
         {
-          "title": "Unmanaged file functions replaced with a service",
-          "link": "https://www.drupal.org/node/3006851"
+          "title": "Drupal coding standards.",
+          "link": "https://www.drupal.org/docs/develop/standards/coding-standards"
         }
       ],
-      "regex": "file_(unmanaged_|prepare_directory|destination|create_filename)[a-z\\_]*\\(\\$[ a-z\\,\\$]*\\)",
+      "regex": "\\\"((?!\\$).)*\\\"",
       "file_types": [
         "module",
         "php",
         "theme"
       ],
       "category": [
-        "best_practices"
+        "performance"
       ]
     },
     "22": {
@@ -1429,7 +1429,7 @@
           "link": "https://www.drupal.org/docs/8/api/routing-system/structure-of-routes"
         }
       ],
-      "regex": "_access: TRUE",
+      "regex": "_access: 'TRUE'",
       "file_types": [
         "routing.yml"
       ],
@@ -1478,6 +1478,25 @@
       ]
     }
   },
+  "install": {
+    "0": {
+      "title": "Use 'enforced' key to delete dependent configurations",
+      "description": "Avoid deleting module dependent configurations in hook_uninstall, instead use 'enforced' key under dependencies of config yml file.",
+      "links": [
+        {
+          "title": "How to remove mymodule configurations on uninstall",
+          "link": "https://www.drupal.org/forum/support/module-development-and-code-questions/2015-09-09/how-to-remove-mymodule-configurations"
+        }
+      ],
+      "regex": "db_delete\\(\\'config\\'\\)",
+      "file_types": [
+        "install"
+      ],
+      "category": [
+        "functionality"
+      ]
+    }
+  },
   "settings.php": {
     "0": {
       "title": "Override global $conf variable.",
@@ -1497,22 +1516,22 @@
       ]
     }
   },
-  "install": {
+  "json": {
     "0": {
-      "title": "Use 'enforced' key to delete dependent configurations",
-      "description": "Avoid deleting module dependent configurations in hook_uninstall, instead use 'enforced' key under dependencies of config yml file.",
+      "title": "Generally Dev, Alpha, beta and Release candidates not yet stable enough for production use.",
+      "description": "These releases should only be downloaded and used by developers very familiar with Drupal or those wishing to help find bugs in the software.",
       "links": [
         {
-          "title": "How to remove mymodule configurations on uninstall",
-          "link": "https://www.drupal.org/forum/support/module-development-and-code-questions/2015-09-09/how-to-remove-mymodule-configurations"
+          "title": "What are alpha and beta releases, and release candidates?",
+          "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
         }
       ],
-      "regex": "db_delete\\(\\'config\\'\\)",
+      "regex": "drupal\\/.*:(.*dev*|.*beta*|.*rc*|.*alpha*)",
       "file_types": [
-        "install"
+        "json"
       ],
       "category": [
-        "functionality"
+        "best_practices"
       ]
     }
   },
@@ -1554,25 +1573,6 @@
       "category": [
         "best_practices",
         "functionality"
-      ]
-    }
-  },
-  "json": {
-    "0": {
-      "title": "Generally Dev, Alpha, beta and Release candidates not yet stable enough for production use.",
-      "description": "These releases should only be downloaded and used by developers very familiar with Drupal or those wishing to help find bugs in the software.",
-      "links": [
-        {
-          "title": "What are alpha and beta releases, and release candidates?",
-          "link": "https://www.drupal.org/docs/8/understanding-drupal-version-numbers/what-are-alpha-and-beta-releases-and-release-candidates"
-        }
-      ],
-      "regex": "drupal\\/.*:(.*dev*|:.*beta*|:.*rc*|:.*alpha*)",
-      "file_types": [
-        "json"
-      ],
-      "category": [
-        "best_practices"
       ]
     }
   }
