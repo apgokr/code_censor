@@ -1,0 +1,19 @@
+{
+  "title": "Raw strings usage.",
+  "description": "Avoid calling raw strings. Use strings inside t() function",
+  "links": [
+    {
+      "title": "Function t().",
+      "link": "https://api.drupal.org/api/drupal/core%21includes%21bootstrap.inc/function/t/8.4.x"
+    }
+  ],
+  "regex": "(?<!t)(\\>|\\()(\\ |\\'|\\\").*(\\ |\\'|\\\")(\\<|\\))",
+  "file_types": [
+    "html.twig",
+    "module"
+  ],
+  "category": [
+    "Drupal Best Practices",
+    "Security"
+  ]
+}

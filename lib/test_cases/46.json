@@ -1,0 +1,19 @@
+{
+  "title": "Image accessibilty.",
+  "description": "Use alt and title with image tags.",
+  "links": [
+    {
+      "title": "Images Concepts.",
+      "link": "https://www.w3.org/WAI/tutorials/images/"
+    }
+  ],
+  "regex": "<img(?![^>]*\\balt=)[^>]*?>",
+  "file_types": [
+    "html.twig",
+    "module",
+    "php"
+  ],
+  "category": [
+    "Drupal Best Practices"
+  ]
+}
