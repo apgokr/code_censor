@@ -1,5 +1,5 @@
 {
-  "title": "Avoid directly calling Drupal::service(), instead inject the service.",
+  "title": "Avoid directly calling Drupal::messenger(), instead inject the messenger service.",
   "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
   "links": [
     {
@@ -7,12 +7,11 @@
       "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
     }
   ],
-  "regex": "Drupal::service\\(",
+  "regex": "Drupal::messenger\\(",
   "file_types": [
     "php"
   ],
   "category": [
-    "best_practices",
-    "functionality"
+    "best_practices"
   ]
 }
