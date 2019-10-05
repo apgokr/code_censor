@@ -21,6 +21,7 @@ function executeCoreTests(response) {
   parsePullRequest(currentPullRequest, coreTests);
 }
 
+// Execution starts here.
 const url = window.location.toString();
 let filesUrl = new RegExp("\/files");
 if (filesUrl.test(url)) {
