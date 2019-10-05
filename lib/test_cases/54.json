@@ -11,7 +11,7 @@
   "file_types": [
     "config.yml",
     ".yml",
-    ".settings.yml"
+    "settings.yml"
   ],
   "category": [
     "best_practices"
