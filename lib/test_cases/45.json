@@ -1,19 +1,19 @@
 {
-  "title": "Raw strings usage.",
-  "description": "Avoid calling raw strings. Use strings inside t() function",
+  "title": "Consider using Events API instead of alters or hooks.",
+  "description": "Carefully decide whether to use the alter system or the event system.",
   "links": [
     {
-      "title": "Function t().",
-      "link": "https://api.drupal.org/api/drupal/core%21includes%21bootstrap.inc/function/t/8.4.x"
+      "title": "Drupal 8 Events vs Alters.",
+      "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
     }
   ],
-  "regex": "(?<!t)(\\>|\\()(\\ |\\'|\\\").*(\\ |\\'|\\\")(\\<|\\))",
+  "regex": "->alter\\(",
   "file_types": [
-    "html.twig",
-    "module"
+    "module",
+    "php"
   ],
   "category": [
-    "Drupal Best Practices",
-    "Security"
+    "best_practices",
+    "functionality"
   ]
 }
