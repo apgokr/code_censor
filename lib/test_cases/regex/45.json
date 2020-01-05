@@ -1,0 +1,19 @@
+{
+  "title": "Consider using Events API instead of alters or hooks.",
+  "description": "Carefully decide whether to use the alter system or the event system.",
+  "links": [
+    {
+      "title": "Drupal 8 Events vs Alters.",
+      "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
+    }
+  ],
+  "regex": "->alter\\(",
+  "file_types": [
+    "module",
+    "php"
+  ],
+  "category": [
+    "best_practices",
+    "functionality"
+  ]
+}

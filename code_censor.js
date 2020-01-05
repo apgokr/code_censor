@@ -5,7 +5,7 @@
 
 // Load all applicable test cases.
 function startCodeCensor() {
-    var coreTestsFile = chrome.runtime.getURL('lib/core.tests.ser');
+    var coreTestsFile = chrome.runtime.getURL('lib/core.regex_tests.ser');
     fetch(coreTestsFile)
         .then((response) => response.text())
         .then((response) => executeCoreTests(response));
