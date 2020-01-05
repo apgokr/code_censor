@@ -25,6 +25,24 @@
       ]
     },
     "1": {
+      "title": "Avoid directly calling Drupal::service(), instead inject the service.",
+      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
+      "links": [
+        {
+          "title": "Services and Dependency Injection",
+          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
+        }
+      ],
+      "regex": "Drupal::service\\(",
+      "file_types": [
+        "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
       "title": "Avoid using config.storage service to get configuration values.",
       "description": "You can also access the config storage directly via the config.storage service which implements StorageInterface::read(). However, this is rarely the correct way to access configuration.",
       "links": [
@@ -44,7 +62,7 @@
         "functionality"
       ]
     },
-    "2": {
+    "3": {
       "title": "Suggestion for working with hook_theme()",
       "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
@@ -57,24 +75,6 @@
       "file_types": [
         "module",
         "theme",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "3": {
-      "title": "Avoid directly calling Drupal::service(), instead inject the service.",
-      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
-      "links": [
-        {
-          "title": "Services and Dependency Injection",
-          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
-        }
-      ],
-      "regex": "Drupal::service\\(",
-      "file_types": [
         "php"
       ],
       "category": [
@@ -119,25 +119,6 @@
       ]
     },
     "6": {
-      "title": "Use cache tags for node cache",
-      "description": "Avoid node_list cache tag and use specific cache tag instead",
-      "links": [
-        {
-          "title": "Using cache tags for a particular node list\n",
-          "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
-        }
-      ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "7": {
       "title": "Use const keywords to define constants.",
       "description": "Avoid define(), Use const keyword to define constants.",
       "links": [
@@ -156,45 +137,26 @@
         "performance"
       ]
     },
+    "7": {
+      "title": "Use cache tags for node cache",
+      "description": "Avoid node_list cache tag and use specific cache tag instead",
+      "links": [
+        {
+          "title": "Using cache tags for a particular node list\n",
+          "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
+        }
+      ],
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
     "8": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "9": {
-      "title": "Use \\Drupal::routeMatch() for security.",
-      "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
-      "links": [
-        {
-          "title": "Use of \\Drupal::routeMatch()",
-          "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
-        }
-      ],
-      "regex": "(\\\\|)Drupal::request\\(\\)",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "security"
-      ]
-    },
-    "10": {
       "title": "File management using file system service.",
       "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
       "links": [
@@ -213,7 +175,7 @@
         "best_practices"
       ]
     },
-    "11": {
+    "9": {
       "title": "Use Drupal date formatter.",
       "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
       "links": [
@@ -223,6 +185,44 @@
         }
       ],
       "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "10": {
+      "title": "Use \\Drupal::routeMatch() for security.",
+      "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
+      "links": [
+        {
+          "title": "Use of \\Drupal::routeMatch()",
+          "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
+        }
+      ],
+      "regex": "(\\\\|)Drupal::request\\(\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "security"
+      ]
+    },
+    "11": {
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
+      "links": [
+        {
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
+        }
+      ],
+      "regex": "->query|db_query\\(",
       "file_types": [
         "module",
         "php",
@@ -271,23 +271,6 @@
       ]
     },
     "14": {
-      "title": "Avoid directly calling Drupal::currentUser(), instead inject the current_user service.",
-      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
-      "links": [
-        {
-          "title": "Services and Dependency Injection",
-          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
-        }
-      ],
-      "regex": "Drupal::currentUser\\(",
-      "file_types": [
-        "php"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "15": {
       "title": "Avoid directly calling Drupal::logger(), instead inject the logger.factory service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -304,26 +287,7 @@
         "best_practices"
       ]
     },
-    "16": {
-      "title": "Consider using Events API instead of alters or hooks.",
-      "description": "Carefully decide whether to use the alter system or the event system.",
-      "links": [
-        {
-          "title": "Drupal 8 Events vs Alters.",
-          "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
-        }
-      ],
-      "regex": "->alter\\(",
-      "file_types": [
-        "module",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "17": {
+    "15": {
       "title": "Avoid directly calling Drupal::database(), instead inject the database service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -340,7 +304,7 @@
         "best_practices"
       ]
     },
-    "18": {
+    "16": {
       "title": "Image accessibilty.",
       "description": "Use alt and title with image tags.",
       "links": [
@@ -359,7 +323,24 @@
         "best_practices"
       ]
     },
-    "19": {
+    "17": {
+      "title": "Avoid directly calling Drupal::currentUser(), instead inject the current_user service.",
+      "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
+      "links": [
+        {
+          "title": "Services and Dependency Injection",
+          "link": "https://www.drupal.org/docs/8/api/services-and-dependency-injection/services-and-dependency-injection-in-drupal-8#using-dependency-injection"
+        }
+      ],
+      "regex": "Drupal::currentUser\\(",
+      "file_types": [
+        "php"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "18": {
       "title": "Avoid directly calling static Entity::load(), instead use the entity_type.manager service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -379,7 +360,7 @@
         "functionality"
       ]
     },
-    "20": {
+    "19": {
       "title": "Avoid directly calling Drupal::entityTypeManager(), instead inject the entity_type.manager service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -394,6 +375,25 @@
       ],
       "category": [
         "best_practices"
+      ]
+    },
+    "20": {
+      "title": "Consider using Events API instead of alters or hooks.",
+      "description": "Carefully decide whether to use the alter system or the event system.",
+      "links": [
+        {
+          "title": "Drupal 8 Events vs Alters.",
+          "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
+        }
+      ],
+      "regex": "->alter\\(",
+      "file_types": [
+        "module",
+        "php"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
       ]
     },
     "21": {
@@ -414,25 +414,6 @@
       ]
     },
     "22": {
-      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
-      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
-      "links": [
-        {
-          "title": "Drupal Entity Manager is deprecated",
-          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
-        }
-      ],
-      "regex": "Drupal::entityManager\\(",
-      "file_types": [
-        "module",
-        "install",
-        "php"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "23": {
       "title": "Avoid directly calling t(), instead use StringTranslationTrait trait.",
       "description": "Using this trait will add t() and formatPlural() methods to the class. These must be used for every translatable string.",
       "links": [
@@ -449,7 +430,7 @@
         "best_practices"
       ]
     },
-    "24": {
+    "23": {
       "title": "Avoid directly calling Drupal::entityQuery(), instead inject the entity.query service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -466,7 +447,7 @@
         "best_practices"
       ]
     },
-    "25": {
+    "24": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -483,6 +464,25 @@
       ],
       "category": [
         "functionality",
+        "best_practices"
+      ]
+    },
+    "25": {
+      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
+      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
+      "links": [
+        {
+          "title": "Drupal Entity Manager is deprecated",
+          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
+        }
+      ],
+      "regex": "Drupal::entityManager\\(",
+      "file_types": [
+        "module",
+        "install",
+        "php"
+      ],
+      "category": [
         "best_practices"
       ]
     },
@@ -554,6 +554,32 @@
       ]
     },
     "2": {
+      "title": "Avoid using entity presave/insert/update/delete hooks",
+      "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
+      "links": [
+        {
+          "title": "Entity CRUD, editing, and view hooks",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/group/entity_crud/8.2.x"
+        },
+        {
+          "title": "Event Subscriber Example",
+          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
+        },
+        {
+          "title": "Drupal 8 Entity Type Events",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21EntityTypeEvents.php/class/EntityTypeEvents/8.2.x"
+        }
+      ],
+      "regex": "function.*(entity_presave|entity_save|entity_delete|entity_insert)\\(.",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "3": {
       "title": "Suggestion for working with hook_theme()",
       "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
@@ -573,7 +599,7 @@
         "functionality"
       ]
     },
-    "3": {
+    "4": {
       "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
       "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
       "links": [
@@ -592,7 +618,7 @@
         "functionality"
       ]
     },
-    "4": {
+    "5": {
       "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "links": [
@@ -610,7 +636,7 @@
         "performance"
       ]
     },
-    "5": {
+    "6": {
       "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
       "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
       "links": [
@@ -620,32 +646,6 @@
         }
       ],
       "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "6": {
-      "title": "Avoid using entity presave/insert/update/delete hooks",
-      "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
-      "links": [
-        {
-          "title": "Entity CRUD, editing, and view hooks",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/group/entity_crud/8.2.x"
-        },
-        {
-          "title": "Event Subscriber Example",
-          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
-        },
-        {
-          "title": "Drupal 8 Entity Type Events",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21EntityTypeEvents.php/class/EntityTypeEvents/8.2.x"
-        }
-      ],
-      "regex": "function.*(entity_presave|entity_save|entity_delete|entity_insert)\\(.",
       "file_types": [
         "module",
         "theme"
@@ -709,18 +709,17 @@
       ]
     },
     "10": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
+      "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
+      "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
       "links": [
         {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
+          "title": "function hook_block_view_BASE_BLOCK_ID_alter.",
+          "link": "https://api.drupal.org/api/drupal/core%21modules%21block%21block.api.php/function/hook_block_view_BASE_BLOCK_ID_alter/8.7.x"
         }
       ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
+      "regex": "(function |)[a-z0-9\\_]*_block_view_alter\\(.*\\)",
       "file_types": [
         "module",
-        "php",
         "theme"
       ],
       "category": [
@@ -746,24 +745,6 @@
       ]
     },
     "12": {
-      "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
-      "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
-      "links": [
-        {
-          "title": "function hook_block_view_BASE_BLOCK_ID_alter.",
-          "link": "https://api.drupal.org/api/drupal/core%21modules%21block%21block.api.php/function/hook_block_view_BASE_BLOCK_ID_alter/8.7.x"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_block_view_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "13": {
       "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
       "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
       "links": [
@@ -781,16 +762,16 @@
         "performance"
       ]
     },
-    "14": {
-      "title": "Use cache tags for node cache",
-      "description": "Avoid node_list cache tag and use specific cache tag instead",
+    "13": {
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
       "links": [
         {
-          "title": "Using cache tags for a particular node list\n",
-          "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
         }
       ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
       "file_types": [
         "module",
         "php",
@@ -800,7 +781,7 @@
         "performance"
       ]
     },
-    "15": {
+    "14": {
       "title": "Use const keywords to define constants.",
       "description": "Avoid define(), Use const keyword to define constants.",
       "links": [
@@ -819,45 +800,26 @@
         "performance"
       ]
     },
+    "15": {
+      "title": "Use cache tags for node cache",
+      "description": "Avoid node_list cache tag and use specific cache tag instead",
+      "links": [
+        {
+          "title": "Using cache tags for a particular node list\n",
+          "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
+        }
+      ],
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
     "16": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "17": {
-      "title": "Use \\Drupal::routeMatch() for security.",
-      "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
-      "links": [
-        {
-          "title": "Use of \\Drupal::routeMatch()",
-          "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
-        }
-      ],
-      "regex": "(\\\\|)Drupal::request\\(\\)",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "security"
-      ]
-    },
-    "18": {
       "title": "File management using file system service.",
       "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
       "links": [
@@ -874,6 +836,44 @@
       ],
       "category": [
         "best_practices"
+      ]
+    },
+    "17": {
+      "title": "Use Drupal date formatter.",
+      "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+      "links": [
+        {
+          "title": "Date Formatter",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+        }
+      ],
+      "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "18": {
+      "title": "Use \\Drupal::routeMatch() for security.",
+      "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
+      "links": [
+        {
+          "title": "Use of \\Drupal::routeMatch()",
+          "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
+        }
+      ],
+      "regex": "(\\\\|)Drupal::request\\(\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "security"
       ]
     },
     "19": {
@@ -895,15 +895,15 @@
       ]
     },
     "20": {
-      "title": "Use Drupal date formatter.",
-      "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
       "links": [
         {
-          "title": "Date Formatter",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
         }
       ],
-      "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+      "regex": "->query|db_query\\(",
       "file_types": [
         "module",
         "php",
@@ -980,25 +980,6 @@
       ]
     },
     "25": {
-      "title": "Consider using Events API instead of alters or hooks.",
-      "description": "Carefully decide whether to use the alter system or the event system.",
-      "links": [
-        {
-          "title": "Drupal 8 Events vs Alters.",
-          "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
-        }
-      ],
-      "regex": "->alter\\(",
-      "file_types": [
-        "module",
-        "php"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "26": {
       "title": "Image accessibilty.",
       "description": "Use alt and title with image tags.",
       "links": [
@@ -1017,7 +998,7 @@
         "best_practices"
       ]
     },
-    "27": {
+    "26": {
       "title": "Avoid directly calling static Entity::load(), instead use the entity_type.manager service.",
       "description": "Dependency injection is the preferred method for accessing and using services in Drupal 8 and should be used whenever possible.",
       "links": [
@@ -1037,26 +1018,26 @@
         "functionality"
       ]
     },
-    "28": {
-      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
-      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
+    "27": {
+      "title": "Consider using Events API instead of alters or hooks.",
+      "description": "Carefully decide whether to use the alter system or the event system.",
       "links": [
         {
-          "title": "Drupal Entity Manager is deprecated",
-          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
+          "title": "Drupal 8 Events vs Alters.",
+          "link": "https://www.previousnext.com.au/blog/alter-or-dispatch-drupal-8-events-versus-alter-hooks"
         }
       ],
-      "regex": "Drupal::entityManager\\(",
+      "regex": "->alter\\(",
       "file_types": [
         "module",
-        "install",
         "php"
       ],
       "category": [
-        "best_practices"
+        "best_practices",
+        "functionality"
       ]
     },
-    "29": {
+    "28": {
       "title": "Avoid loose checking (==) and use strict (===) checking if possible.",
       "description": "A Loose comparison (==) follows suit with the “best-guess” approach, which can lead to some unexpected results.",
       "links": [
@@ -1073,6 +1054,25 @@
       ],
       "category": [
         "functionality",
+        "best_practices"
+      ]
+    },
+    "29": {
+      "title": "Drupal::entityManager() is deprecated, instead use the entity_type.manager service.",
+      "description": "This will be removed before Drupal 9.0.0. Use \\Drupal::entityTypeManager() instead in most cases.",
+      "links": [
+        {
+          "title": "Drupal Entity Manager is deprecated",
+          "link": "https://api.drupal.org/api/drupal/core!lib!Drupal.php/function/Drupal%3A%3AentityManager/8.2.x"
+        }
+      ],
+      "regex": "Drupal::entityManager\\(",
+      "file_types": [
+        "module",
+        "install",
+        "php"
+      ],
+      "category": [
         "best_practices"
       ]
     },
@@ -1144,6 +1144,32 @@
       ]
     },
     "2": {
+      "title": "Avoid using entity presave/insert/update/delete hooks",
+      "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
+      "links": [
+        {
+          "title": "Entity CRUD, editing, and view hooks",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/group/entity_crud/8.2.x"
+        },
+        {
+          "title": "Event Subscriber Example",
+          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
+        },
+        {
+          "title": "Drupal 8 Entity Type Events",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21EntityTypeEvents.php/class/EntityTypeEvents/8.2.x"
+        }
+      ],
+      "regex": "function.*(entity_presave|entity_save|entity_delete|entity_insert)\\(.",
+      "file_types": [
+        "module",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
+    "3": {
       "title": "Suggestion for working with hook_theme()",
       "description": "Don't name the theming function like 'block__...' - this will not pass any variables down to the twig templates.",
       "links": [
@@ -1163,7 +1189,7 @@
         "functionality"
       ]
     },
-    "3": {
+    "4": {
       "title": "Avoid using hook_preprocess_views/hook_views_query_alter",
       "description": "Avoid using hook_preprocess_views and hook_views_query_alter and see if some reusable Views Plugin (like contextual filter) can be created instead.",
       "links": [
@@ -1182,7 +1208,7 @@
         "functionality"
       ]
     },
-    "4": {
+    "5": {
       "title": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "description": "Avoid hook_library_info_alter for static css/js ans use Libraries-extend or Libraries-override instead",
       "links": [
@@ -1200,7 +1226,7 @@
         "performance"
       ]
     },
-    "5": {
+    "6": {
       "title": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead.",
       "description": "Avoid using hook_entity_type_create/delete/update and use Event subscribers instead",
       "links": [
@@ -1210,32 +1236,6 @@
         }
       ],
       "regex": "hook_ENTITY_TYPE_(create|delete|insert|update|view|load)\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "6": {
-      "title": "Avoid using entity presave/insert/update/delete hooks",
-      "description": "Try to be specific using entity_type related hooks like hook_ENTITY_TYPE_presave or Use Event Subscriber",
-      "links": [
-        {
-          "title": "Entity CRUD, editing, and view hooks",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21entity.api.php/group/entity_crud/8.2.x"
-        },
-        {
-          "title": "Event Subscriber Example",
-          "link": "https://www.drupal.org/docs/8/modules/simple-fb-connect-8x/eventsubscriber-example"
-        },
-        {
-          "title": "Drupal 8 Entity Type Events",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Entity%21EntityTypeEvents.php/class/EntityTypeEvents/8.2.x"
-        }
-      ],
-      "regex": "function.*(entity_presave|entity_save|entity_delete|entity_insert)\\(.",
       "file_types": [
         "module",
         "theme"
@@ -1299,18 +1299,17 @@
       ]
     },
     "10": {
-      "title": "Use cache context for performance..",
-      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
+      "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
+      "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
       "links": [
         {
-          "title": "Cacheability of render arrays",
-          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
+          "title": "function hook_block_view_BASE_BLOCK_ID_alter.",
+          "link": "https://api.drupal.org/api/drupal/core%21modules%21block%21block.api.php/function/hook_block_view_BASE_BLOCK_ID_alter/8.7.x"
         }
       ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
+      "regex": "(function |)[a-z0-9\\_]*_block_view_alter\\(.*\\)",
       "file_types": [
         "module",
-        "php",
         "theme"
       ],
       "category": [
@@ -1336,24 +1335,6 @@
       ]
     },
     "12": {
-      "title": "Use hook_block_view_BASE_BLOCK_ID_alter for better performance.",
-      "description": "Use hook_block_view_BASE_BLOCK_ID_alter instead of hook_block_view_alter.",
-      "links": [
-        {
-          "title": "function hook_block_view_BASE_BLOCK_ID_alter.",
-          "link": "https://api.drupal.org/api/drupal/core%21modules%21block%21block.api.php/function/hook_block_view_BASE_BLOCK_ID_alter/8.7.x"
-        }
-      ],
-      "regex": "(function |)[a-z0-9\\_]*_block_view_alter\\(.*\\)",
-      "file_types": [
-        "module",
-        "theme"
-      ],
-      "category": [
-        "performance"
-      ]
-    },
-    "13": {
       "title": "Use hook_field_widget_WIDGET_TYPE_form_alter for better performance.",
       "description": "Use hook_field_widget_WIDGET_TYPE_form_alter instead of hook_field_widget_form_alter.",
       "links": [
@@ -1371,16 +1352,16 @@
         "performance"
       ]
     },
-    "14": {
-      "title": "Use cache tags for node cache",
-      "description": "Avoid node_list cache tag and use specific cache tag instead",
+    "13": {
+      "title": "Use cache context for performance..",
+      "description": "Avoid using #cache max-age = 0 and use cache context instead.",
       "links": [
         {
-          "title": "Using cache tags for a particular node list\n",
-          "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
+          "title": "Cacheability of render arrays",
+          "link": "https://www.drupal.org/docs/8/api/render-api/cacheability-of-render-arrays"
         }
       ],
-      "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\').*?(\\n.*?|)+(\\\"|\\')max\\-age(\\\"|\\').(\\=\\>| \\=)[ 0-9]*(?=(\\;|\\,))",
       "file_types": [
         "module",
         "php",
@@ -1390,7 +1371,7 @@
         "performance"
       ]
     },
-    "15": {
+    "14": {
       "title": "Use const keywords to define constants.",
       "description": "Avoid define(), Use const keyword to define constants.",
       "links": [
@@ -1409,45 +1390,26 @@
         "performance"
       ]
     },
+    "15": {
+      "title": "Use cache tags for node cache",
+      "description": "Avoid node_list cache tag and use specific cache tag instead",
+      "links": [
+        {
+          "title": "Using cache tags for a particular node list\n",
+          "link": "https://drupal.stackexchange.com/questions/200321/using-cache-tags-for-a-particular-node-list"
+        }
+      ],
+      "regex": "(\\\"|\\')\\#cache(\\\"|\\')[\\](\\\"|\\')tags(\\\"|\\').(\\=\\>| \\=).(\\[|)[ a-z\\'\\,\\t0-9\\:\\_\\n\\-\\[\\]]*(\\\"|\\')node_list(\\\"|\\')(\\]|)(?=(\\;|\\,))",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "performance"
+      ]
+    },
     "16": {
-      "title": "Avoid using db_query or query()",
-      "description": "Use dynamic queries instead of static queries",
-      "links": [
-        {
-          "title": "Dynamic Queries",
-          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
-        }
-      ],
-      "regex": "->query|db_query\\(",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "best_practices"
-      ]
-    },
-    "17": {
-      "title": "Use \\Drupal::routeMatch() for security.",
-      "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
-      "links": [
-        {
-          "title": "Use of \\Drupal::routeMatch()",
-          "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
-        }
-      ],
-      "regex": "(\\\\|)Drupal::request\\(\\)",
-      "file_types": [
-        "module",
-        "php",
-        "theme"
-      ],
-      "category": [
-        "security"
-      ]
-    },
-    "18": {
       "title": "File management using file system service.",
       "description": "Use \\Drupal::service('file_system')-><function> instead of file_unmanaged_<function> and other functions.",
       "links": [
@@ -1464,6 +1426,44 @@
       ],
       "category": [
         "best_practices"
+      ]
+    },
+    "17": {
+      "title": "Use Drupal date formatter.",
+      "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+      "links": [
+        {
+          "title": "Date Formatter",
+          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+        }
+      ],
+      "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "best_practices"
+      ]
+    },
+    "18": {
+      "title": "Use \\Drupal::routeMatch() for security.",
+      "description": "Avoid calling Drupal::request() for route parameters, use \\Drupal::routeMatch() instead.",
+      "links": [
+        {
+          "title": "Use of \\Drupal::routeMatch()",
+          "link": "https://drupal.stackexchange.com/questions/6638/how-do-i-get-the-node-id-from-the-url/202185#202185"
+        }
+      ],
+      "regex": "(\\\\|)Drupal::request\\(\\)",
+      "file_types": [
+        "module",
+        "php",
+        "theme"
+      ],
+      "category": [
+        "security"
       ]
     },
     "19": {
@@ -1485,15 +1485,15 @@
       ]
     },
     "20": {
-      "title": "Use Drupal date formatter.",
-      "description": "Avoid using php date formatters, use \\Drupal::service('date.formatter')->format() instead ",
+      "title": "Avoid using db_query or query()",
+      "description": "Use dynamic queries instead of static queries",
       "links": [
         {
-          "title": "Date Formatter",
-          "link": "https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Datetime%21DateFormatter.php/function/DateFormatter%3A%3Aformat/8.7.x"
+          "title": "Dynamic Queries",
+          "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
         }
       ],
-      "regex": "(gm|i)*date\\((\\\"|\\')[ ,d,D,j,l,N,S,w,Z,W,F,m,M,n,t,L,o,Y,y,A,a,G,g,H,h,B,i,s,u,v,e,I,O,P,T,Z,c,r,U,:]*(\\\"|\\')(\\,|)[ a-z0-9\\\"\\(\\)\\-\\:\\']*\\)",
+      "regex": "->query|db_query\\(",
       "file_types": [
         "module",
         "php",
@@ -1843,6 +1843,24 @@
       ]
     },
     "1": {
+      "title": "Wrap strings in Drupal.t function in Javascript",
+      "description": "The Drupal core javascript library (core/drupal) ships with two functions to support multilingual in Javascript: Drupal.t() and Drupal.formatPlural()",
+      "links": [
+        {
+          "title": "Difference between == and ===",
+          "link": "https://sqndr.github.io/d8-theming-guide/javascript/multilingual.html"
+        }
+      ],
+      "regex": "= '.*'\\s*$|= \".*\"\\s*$",
+      "file_types": [
+        "js"
+      ],
+      "category": [
+        "best_practices",
+        "functionality"
+      ]
+    },
+    "2": {
       "title": "Avoid hard-coding of value like path, domain, api key.",
       "description": "Instead use Drupal config API to provide these values as configurations.",
       "links": [
@@ -1857,24 +1875,6 @@
         "php",
         "module",
         "theme"
-      ],
-      "category": [
-        "best_practices",
-        "functionality"
-      ]
-    },
-    "2": {
-      "title": "Wrap strings in Drupal.t function in Javascript",
-      "description": "The Drupal core javascript library (core/drupal) ships with two functions to support multilingual in Javascript: Drupal.t() and Drupal.formatPlural()",
-      "links": [
-        {
-          "title": "Difference between == and ===",
-          "link": "https://sqndr.github.io/d8-theming-guide/javascript/multilingual.html"
-        }
-      ],
-      "regex": "= '.*'\\s*$|= \".*\"\\s*$",
-      "file_types": [
-        "js"
       ],
       "category": [
         "best_practices",
