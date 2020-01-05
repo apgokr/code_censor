@@ -32,6 +32,7 @@
         "*://*.github.com/*"
       ],
       "js": [
+        "lib/test_cases/function/pull_request_file.js",
         "lib/entities.js",
         "lib/functions.js",
         "code_censor.js"
@@ -46,6 +47,6 @@
   },
   "web_accessible_resources": [
     "assets/icons/*",
-    "lib/core.tests.ser"
+    "lib/core.regex_tests.ser"
   ]
 }
