@@ -46,6 +46,6 @@
   },
   "web_accessible_resources": [
     "assets/icons/*",
-    "lib/core.tests.ser"
+    "lib/core.regex_tests.ser"
   ]
 }
