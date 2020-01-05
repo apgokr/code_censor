@@ -24,3 +24,8 @@ Test cases are key to success for Code Censor. Code Censor uses these test cases
 * Click on Load unpacked and locate the root of the repository.
 * Congratulations! Code Censor Extension is installed now.
 * Navigate to PR files page and use this tool.
+
+
+## Features
+
+* Auto-commentor: Click on the review and you get the comment/suggestion ready to be posted as well.
