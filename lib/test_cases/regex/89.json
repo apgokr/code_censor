@@ -1,0 +1,13 @@
+{
+  "title": "Console.log should be removed from js life",
+  "description": "Kindly validate if console.log is required over here or not.",
+  "links": [
+  ],
+  "regex": "console\\.log\\(",
+  "file_types": [
+    "js"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
