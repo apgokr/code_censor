@@ -1,0 +1,13 @@
+{
+  "title": "Description should be added",
+  "description": "Description of fields, entities are important for understanding the purpose.",
+  "links": [
+  ],
+  "regex": "\\s*description\\s*:\\s*(\\''|\\\"\"|\\s*$)",
+  "file_types": [
+    "yml"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
