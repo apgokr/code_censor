@@ -1,0 +1,13 @@
+{
+  "title": "Instead of ->get('type') use bundle().",
+  "description": "Use bundle() to get type of node.",
+  "regex": "->get\\(\\'type\\'\\)",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
