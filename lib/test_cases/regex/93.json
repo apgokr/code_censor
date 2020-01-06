@@ -1,0 +1,19 @@
+{
+  "title": "Use short array php syntax.",
+  "description": "Arrays should be formatted using short array syntax with a space separating each element (after the comma), and spaces around the => key association operator, if applicable.",
+  "links": [
+    {
+      "title": "PHP 5.4 short array syntax coding standards for Drupal 8",
+      "link": "https://www.drupal.org/project/coding_standards/issues/2135291"
+    }
+  ],
+  "regex": "\\s+array\\(",
+  "file_types": [
+    "module",
+    "php",
+    "theme"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
