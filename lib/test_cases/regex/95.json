@@ -1,0 +1,17 @@
+{
+  "title": "Avoid using absolute css units.",
+  "description": "Avoid using absolute css units for height, weight etc. Instead, use relative units like em, vh, %",
+  "links": [
+    {
+      "title": "CSS units.",
+      "link": "https://www.w3schools.com/cssref/css_units.asp"
+    }
+  ],
+  "regex": "([0-9]+(px|pc|pt))",
+  "file_types": [
+    "scss"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}

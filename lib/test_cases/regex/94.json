@@ -1,0 +1,17 @@
+{
+  "title": "Avoid !important in scss.",
+  "description": "Avoid usage of important in the scsss file.",
+  "links": [
+    {
+      "title": "CSS !important: Don't Use It. Do This Instead",
+      "link": "https://uxengineer.com/css-specificity-avoid-important-css/"
+    }
+  ],
+  "regex": "!important",
+  "file_types": [
+    "scss"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
