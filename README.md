@@ -28,4 +28,4 @@ Test cases are key to success for Code Censor. Code Censor uses these test cases
 
 ## Features
 
-* Auto-commentor: Click on the review and you get the comment/suggestion ready to be posted as well.
+* Auto-commentor: Double Click on the review and you get the comment/suggestion ready to be posted as well.

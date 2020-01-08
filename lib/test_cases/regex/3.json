@@ -7,7 +7,7 @@
       "link": "https://www.drupal.org/docs/8/api/database-api/dynamic-queries"
     }
   ],
-  "regex": "->query|db_query\\(",
+  "regex": "->query\\(|db_query\\(",
   "file_types": [
     "module",
     "php",
