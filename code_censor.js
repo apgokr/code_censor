@@ -5,10 +5,17 @@
 
 // Load all applicable test cases.
 function startCodeCensor() {
-    var coreTestsFile = chrome.runtime.getURL('lib/core.regex_tests.ser');
-    fetch(coreTestsFile)
-        .then((response) => response.text())
-        .then((response) => executeCoreTests(response));
+  let codeCensorEnabled = true;
+  chrome.storage.sync.get('code_censor', function (obj) {
+    codeCensorEnabled = obj.code_censor;
+
+    if (codeCensorEnabled) {
+      var coreTestsFile = chrome.runtime.getURL('lib/core.regex_tests.ser');
+      fetch(coreTestsFile)
+          .then((response) => response.text())
+          .then((response) => executeCoreTests(response));
+    }
+  });
 }
 
 function executeCoreTests(response) {
@@ -56,3 +63,30 @@ Array.from(document.querySelectorAll(`
     subtree: true
   });
 });
+
+Element.prototype.remove = function() {
+  this.parentElement.removeChild(this);
+};
+
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+  for(var i = this.length - 1; i >= 0; i--) {
+    if(this[i] && this[i].parentElement) {
+      this[i].parentElement.removeChild(this[i]);
+    }
+  }
+};
+
+/**
+ * Resets code censor.
+ */
+function resetCodeCensor() {
+  document.getElementsByClassName("cc-reset").remove();
+  let elementsList = document.querySelectorAll(".cc-suggest");
+  elementsList.forEach(function (element) {
+    element.classList.remove('cc-suggest');
+    element.classList.remove('cc-tooltip');
+  });
+
+  // Restart Code Censor.
+  startCodeCensor();
+}
