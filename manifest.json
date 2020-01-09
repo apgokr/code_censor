@@ -13,10 +13,14 @@
   },
   "permissions": [
     "tabs",
-    "*://*.github.com/*"
+    "activeTab",
+    "*://*.github.com/*",
+    "storage",
+    "declarativeContent"
   ],
   "background": {
-    "scripts":["background.js"]
+    "scripts":["background.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
@@ -43,11 +47,13 @@
       ]
     }
   ],
-  "page_action": {
-    "default_icon": "icon.png"
-  },
   "web_accessible_resources": [
     "assets/icons/*",
     "lib/core.regex_tests.ser"
-  ]
+  ],
+  "browser_action": {
+    "default_title": "Code Censor Options",
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
 }
