@@ -12,6 +12,21 @@ ccOptions.forEach(function (ccOption) {
     ccOptionInput.addEventListener('click', function () {
         let ccOption = {};
         ccOption[ccOptionName] = ccOptionInput.checked;
+
+        if (ccOptionName === 'code_censor') {
+            let ccOptionsCategories = document.querySelectorAll('.cc-popup-options-category .cc-popup-option');
+            if (ccOption[ccOptionName] === false) {
+                ccOptionsCategories.forEach(function (ccOptionCategory) {
+                    ccOptionCategory.querySelector('input[type="checkbox"]').disabled = true;
+                })
+            }
+            else {
+                ccOptionsCategories.forEach(function (ccOptionCategory) {
+                    ccOptionCategory.querySelector('input[type="checkbox"]').disabled = false;
+                })
+            }
+        }
+
         chrome.storage.sync.set(ccOption);
 
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {

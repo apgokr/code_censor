@@ -131,3 +131,8 @@ a {
 a:hover {
     color: #58d043;
 }
+
+.cc-popup-options-category input:disabled + .slider {
+    background-color: #d3d3d3;
+    cursor: default;
+}
