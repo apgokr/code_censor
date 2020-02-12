@@ -82,3 +82,11 @@
   display: list-item;
   height: 21px;
 }
+
+.file-diff-split .blob-code {
+  width: 160%;
+}
+
+.file-diff-split .cc-tooltip .cc-tooltip-text {
+  left: 70%;
+}
