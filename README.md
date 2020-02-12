@@ -36,9 +36,9 @@ Code Censor does not perform the job of code-sniffer tools like PHPCS
 ## How to create more tests?
 Raise a Pull Request on this repository. 
 Sample tests - 
-Regex based (Line level) - https://github.com/apgokr/code_censor/blob/develop/lib/test_cases/regex/17.json
-File Level - https://github.com/apgokr/code_censor/blob/develop/lib/test_cases/function/pull_request_file.js#L645
-PR Level - https://github.com/apgokr/code_censor/blob/develop/lib/test_cases/function/pull_request.js#L94
+- Regex based (Line level) - https://github.com/apgokr/code_censor/blob/develop/lib/test_cases/regex/17.json
+- File Level - https://github.com/apgokr/code_censor/blob/develop/lib/test_cases/function/pull_request_file.js#L645
+- PR Level - https://github.com/apgokr/code_censor/blob/develop/lib/test_cases/function/pull_request.js#L94
 
 ## How can I add my own tests to Code Sniffer?
 Once your test is created, you can modify your chrome extension locally to include new tests. 
