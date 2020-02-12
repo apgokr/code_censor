@@ -2,7 +2,6 @@
     margin: 0;
     overflow: hidden;
     width: 250px;
-    height: 350px;
 }
 
 body {
@@ -12,36 +11,19 @@ body {
     color: #323439;
 }
 
-.cc-popup-footer {
-    background: #eeeeee;
-}
-
 .cc-popup-footer div {
     padding: 0 20px 8px;
 }
 
-.cc-popup-footer .branding {
-    border-top: #ccc 1px solid;
-    /*border-bottom: #2cbe4e 1px solid;*/
-    /*box-shadow: 0px 0px 3px #58d043;*/
-}
-
-.cc-popup-footer .ico:before{
-    content: '';
-    background:url('../icon.png');
-    background-size:cover;
-    position:absolute;
-    width: 25px;
-    height: 25px;
-    margin: 12px 0 0 10px;
-}
-
-.cc-popup-footer h2 {
-    color: #2cbe4e;
+.cc-popup-footer span {
     text-align: center;
-    font-weight: 800;
-    font-size: 17px;
-    margin-left: 20px;
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+.cc-popup-footer a {
+    text-decoration: underline;
+    color: #323439;
 }
 
 .cc-popup-footer .help {
