@@ -30,7 +30,9 @@ Checks like proper usage of event system, subscriber services, access validators
 
 
 ## What does Code Censor NOT do?
-Code Censor does not perform the job of code-sniffer tools like PHPCS
+Code Censor does not perform the job of code-sniffer tools like PHPCS. Like syntactical formatting or similar. 
+It only addresses the issues that you watch for while doing code review on PRs. 
+*Like - hey, is this function too long? is dependency injection being used the right way here? is this a hard coded URL that should sit in config instead? are there too many returns in the function? should you use a $user object instead of $account object here? isn't Drupal::entityManager() method deprecated? is this image field markup missing alt and title?*
 
 
 ## How to create more tests?
