@@ -6,11 +6,11 @@ Code Censor is a chrome extension to semi-automate PR (Pull Request) Reviews (sp
 The tool intends to make it easy for the reviewer to find violations in code through visual highlighting, along with prompts on how to remediate the code, and a way to quickly insert suggestions as a comment on the PR. 
 
 ## How do I enable Code Censor?
-Download the latest stable extension from https://github.com/apgokr/code_censor/releases
-Enable the extension on your chrome browser.
-1. Enable Developer mode by ticking the checkbox in the upper-right corner.
-1. Click on the "Load unpacked extension..." button.
-1. Select the directory containing your unpacked extension.
+1. Download and unzip the latest stable extension from https://github.com/apgokr/code_censor/releases
+2. In Chrome browser, go to chrome://extensions/.
+3. Enable Developer mode by ticking the checkbox in the upper-right corner.
+4. Click on the "Load unpacked extension..." button.
+5. Select the directory containing your unpacked extension.
 
 ## What would Code Censor do on my Pull Request page?
 1. Highlight code violations for your review
