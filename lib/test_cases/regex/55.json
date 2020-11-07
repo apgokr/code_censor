@@ -1,0 +1,17 @@
+{
+  "title": "Instead of field->value use getValue or getString",
+  "description": "Use the field->getValue() for getting any field_value in Drupal 8.",
+  "links": [
+    {
+      "title": "Accessing field values",
+      "link": "https://www.drupal.org/forum/support/module-development-and-code-questions/2016-04-25/entity-getfield-getvalue-returns"
+    }
+  ],
+  "regex": "\\)\\->value",
+  "file_types": [
+    "module"
+  ],
+  "category": [
+    "best_practices"
+  ]
+}
